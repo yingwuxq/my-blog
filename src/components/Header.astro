@@ -134,17 +134,25 @@ const iconClass = isHome
   const sunIcon = document.querySelector('[data-theme-icon="sun"]');
   const homeHeader = document.querySelector("[data-home-header]");
 
+  const setPanelOpen = () => {
+    if (!homeHeader) return;
+    const open = !searchPanel.hidden || !menuPanel.hidden;
+    homeHeader.dataset.panelOpen = String(open);
+  };
+
   const setMenu = (open) => {
     menuPanel.hidden = !open;
     menuIcon.hidden = open;
     closeIcon.hidden = !open;
     menuToggle?.setAttribute("aria-expanded", String(open));
+    setPanelOpen();
   };
 
   const setSearch = (open) => {
     searchPanel.hidden = !open;
     searchToggle?.setAttribute("aria-expanded", String(open));
     if (open) searchInput?.focus();
+    setPanelOpen();
   };
 
   const setThemeIcon = () => {
