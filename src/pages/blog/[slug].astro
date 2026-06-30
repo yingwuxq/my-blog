@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
@@ -16,11 +16,10 @@ import {
   relatedPosts,
   adjacentPosts,
   normalizePost,
-  imageSrc,
 } from "../../lib/blog-data.js";
 
 export async function getStaticPaths() {
-  const entries = await getCollection("blog");
+  const entries = await getCollection("blog", ({ data }) => !data.draft);
   return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
 }
 
@@ -38,9 +37,18 @@ const toc = headings
   }));
 const related = await relatedPosts(post);
 const { prev, next } = await adjacentPosts(post);
-const canonical = `/blog/${post.slug}`;
+const canonical = post.canonical ?? `/blog/${post.slug}`;
 const canonicalUrl = new URL(canonical, SITE.url).toString();
-const thumbnailUrl = post.thumbnail ? new URL(imageSrc(post.thumbnail), SITE.url).toString() : undefined;
+const socialImage = post.thumbnail
+  ? await getImage({
+      src: post.thumbnail,
+      width: 1200,
+      height: 630,
+      format: "webp",
+      quality: 78,
+    })
+  : undefined;
+const thumbnailUrl = socialImage ? new URL(socialImage.src, SITE.url).toString() : undefined;
 const shareUrl = canonicalUrl;
 const jsonLd = {
   "@context": "https://schema.org",
@@ -56,11 +64,11 @@ const jsonLd = {
 ---
 
 <BaseLayout
-  title={`${post.title} - ${SITE.name}`}
-  description={post.excerpt}
+  title={post.seoTitle ?? `${post.title} - ${SITE.name}`}
+  description={post.seoDescription ?? post.excerpt}
   canonical={canonical}
   ogType="article"
-  ogImage={post.thumbnail}
+  ogImage={socialImage?.src}
   jsonLd={jsonLd}
   flushFooter
 >
@@ -86,7 +94,7 @@ const jsonLd = {
           </a>
         )
       }
-      <h1 class="mt-4 font-serif text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">
+      <h1 class="mt-4 font-serif text-4xl font-semibold leading-[1.1] sm:text-5xl">
         {post.title}
       </h1>
       <p class="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">{post.excerpt}</p>
@@ -111,7 +119,15 @@ const jsonLd = {
       post.thumbnail && (
         <figure class="mx-auto mt-10 max-w-4xl">
           <div class="overflow-hidden rounded-md bg-muted">
-            <Image src={post.thumbnail} alt={post.imageCredit?.caption ?? ""} class="w-full" />
+            <Image
+              src={post.thumbnail}
+              alt={post.thumbnailAlt || post.imageCredit?.caption || ""}
+              class="w-full"
+              widths={[640, 960, 1280, 1600]}
+              sizes="(min-width: 1024px) 896px, calc(100vw - 40px)"
+              format="webp"
+              quality={78}
+            />
           </div>
           {
             post.imageCredit && (
@@ -230,7 +246,7 @@ const jsonLd = {
     {
       related.length > 0 && (
         <section class="mt-20 border-t border-border pt-12">
-          <h2 class="font-serif text-2xl font-semibold tracking-tight">Continue reading</h2>
+          <h2 class="font-serif text-2xl font-semibold">Continue reading</h2>
           <div class="mt-8 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((relatedPost) => <PostCard post={relatedPost} />)}
           </div>

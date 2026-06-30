@@ -12,13 +12,17 @@ const blog = defineCollection({
     z.object({
       title: z.string(),
       excerpt: z.string(),
+      seoTitle: z.string().optional(),
+      seoDescription: z.string().optional(),
+      canonical: z.string().url().optional(),
       date: z.coerce.date(),
       updated: z.coerce.date().optional(),
-      readingTime: z.number().int().positive(),
+      readingTime: z.number().int().positive().optional(),
       category: z.string(),
       tags: z.array(z.string()).default([]),
       author: z.string(),
       thumbnail: image(),
+      thumbnailAlt: z.string().default(""),
       imageCredit: z
         .object({
           caption: z.string().optional(),
@@ -29,6 +33,7 @@ const blog = defineCollection({
         })
         .optional(),
       featured: z.boolean().default(false),
+      draft: z.boolean().default(false),
     }),
 });
 

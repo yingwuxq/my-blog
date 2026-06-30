@@ -1,58 +1,20 @@
 import { getCollection } from "astro:content";
-
-const siteUrl = (
-  import.meta.env.SITE_URL ||
-  import.meta.env.PUBLIC_SITE_URL ||
-  "https://quietpages-eta.vercel.app"
-).replace(/\/$/, "");
-
-export const authors = [
-  {
-    slug: "elena-march",
-    name: "Elena March",
-    bio: "Writer & editor covering design, craft, and slow technology.",
-    longBio:
-      "Elena March writes about the quiet edges of design and technology. Previously an editor at two small magazines, she now publishes essays and field notes from a desk overlooking the harbour.",
-    avatar: "https://i.pravatar.cc/200?img=47",
-  },
-  {
-    slug: "samuel-okafor",
-    name: "Samuel Okafor",
-    bio: "Software engineer with a soft spot for typography and the open web.",
-    longBio:
-      "Samuel builds tools for writers and reads more than he ships. He believes the best interfaces are the ones you don't notice.",
-    avatar: "https://i.pravatar.cc/200?img=12",
-  },
-  {
-    slug: "mira-iwasaki",
-    name: "Mira Iwasaki",
-    bio: "Photographer and essayist based between Kyoto and Lisbon.",
-    longBio:
-      "Mira's work sits at the intersection of place, memory, and the everyday object. Her essays have appeared in a number of small but loved publications.",
-    avatar: "https://i.pravatar.cc/200?img=32",
-  },
-];
-
-export const categories = [
-  { slug: "essays", name: "Essays" },
-  { slug: "design", name: "Design" },
-  { slug: "engineering", name: "Engineering" },
-  { slug: "field-notes", name: "Field Notes" },
-  { slug: "interviews", name: "Interviews" },
-];
-
-export const tags = [
-  { slug: "writing", name: "Writing" },
-  { slug: "typography", name: "Typography" },
-  { slug: "minimalism", name: "Minimalism" },
-  { slug: "tools", name: "Tools" },
-  { slug: "travel", name: "Travel" },
-  { slug: "process", name: "Process" },
-  { slug: "web", name: "Web" },
-  { slug: "books", name: "Books" },
-];
+export { SITE, authors, categories, tags } from "../config/theme.config.ts";
+import { authors, categories, tags } from "../config/theme.config.ts";
 
 const isoDate = (date) => date?.toISOString().slice(0, 10);
+const wordsPerMinute = 220;
+
+const estimateReadingTime = (text = "") => {
+  const words = text
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/<[^>]+>/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+
+  return Math.max(1, Math.ceil(words / wordsPerMinute));
+};
 
 export const imageSrc = (image) => (typeof image === "string" ? image : image?.src);
 
@@ -61,9 +23,11 @@ export const normalizePost = (entry) => ({
   ...entry.data,
   date: isoDate(entry.data.date),
   updated: isoDate(entry.data.updated),
+  readingTime: entry.data.readingTime ?? estimateReadingTime(entry.body),
 });
 
-export const posts = async () => (await getCollection("blog")).map(normalizePost);
+export const posts = async () =>
+  (await getCollection("blog", ({ data }) => !data.draft)).map(normalizePost);
 
 export const getPost = async (slug) => (await posts()).find((post) => post.slug === slug);
 export const getAuthor = (slug) => authors.find((author) => author.slug === slug);
@@ -105,10 +69,3 @@ export const formatDate = (iso) =>
     month: "long",
     day: "numeric",
   });
-
-export const SITE = {
-  name: "Quiet Pages",
-  description:
-    "An independent magazine on writing, design, and the slow web. Published occasionally, read closely.",
-  url: siteUrl,
-};

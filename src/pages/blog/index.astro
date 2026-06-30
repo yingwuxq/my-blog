@@ -15,7 +15,7 @@ const posts = await sortedPosts();
 >
   <div class="mx-auto max-w-4xl px-5 py-12" data-archive>
     <Breadcrumbs items={[{ label: "Home", to: "/" }, { label: "Archive" }]} />
-    <h1 class="mt-4 font-serif text-4xl font-semibold tracking-tight sm:text-5xl">The archive</h1>
+    <h1 class="mt-4 font-serif text-4xl font-semibold sm:text-5xl">The archive</h1>
     <p class="mt-3 max-w-xl text-muted-foreground">
       Every piece we've published. {posts.length} essays, field notes, and interviews.
     </p>
@@ -45,7 +45,7 @@ const posts = await sortedPosts();
         <a data-category-filter="" href="/blog" class="rounded-full border px-3 py-1 text-xs">All</a>
         {
           categories.map((category) => (
-            <a data-category-filter={category.slug} href={`/blog?cat=${category.slug}`} class="rounded-full border px-3 py-1 text-xs">
+            <a data-category-filter={category.slug} href={`/categories/${category.slug}`} class="rounded-full border px-3 py-1 text-xs">
               {category.name}
             </a>
           ))
@@ -55,7 +55,7 @@ const posts = await sortedPosts();
         <span class="text-xs uppercase tracking-wider text-muted-foreground">Tags</span>
         {
           tags.map((tag) => (
-            <a data-tag-filter={tag.slug} href={`/blog?tag=${tag.slug}`} class="rounded-full border px-2.5 py-0.5 text-xs">
+            <a data-tag-filter={tag.slug} href={`/tags/${tag.slug}`} class="rounded-full border px-2.5 py-0.5 text-xs">
               #{tag.name}
             </a>
           ))
@@ -133,27 +133,6 @@ const posts = await sortedPosts();
       });
     };
 
-    const setFilterLinks = (state) => {
-      const makeHref = (next) => {
-        const params = new URLSearchParams();
-        const merged = { ...state, ...next, page: 1 };
-        if (merged.q) params.set("q", merged.q);
-        if (merged.cat) params.set("cat", merged.cat);
-        if (merged.tag) params.set("tag", merged.tag);
-        const query = params.toString();
-        return query ? `/blog?${query}` : "/blog";
-      };
-
-      categoryLinks.forEach((link) => {
-        const cat = link.getAttribute("data-category-filter") || "";
-        link.href = makeHref({ cat });
-      });
-      tagLinks.forEach((link) => {
-        const tag = link.getAttribute("data-tag-filter") || "";
-        link.href = makeHref({ tag: state.tag === tag ? "" : tag });
-      });
-    };
-
     const render = (state, updateInput = true) => {
       if (updateInput) input.value = state.q;
       clear.hidden = !state.q;
@@ -180,7 +159,6 @@ const posts = await sortedPosts();
 
       applyLinkState(categoryLinks, state.cat, activeCategory, inactiveCategory, "data-category-filter");
       applyLinkState(tagLinks, state.tag, activeTag, inactiveTag, "data-tag-filter");
-      setFilterLinks(state);
     };
 
     let state = stateFromUrl();
@@ -202,9 +180,15 @@ const posts = await sortedPosts();
     [...categoryLinks, ...tagLinks].forEach((link) => {
       link.addEventListener("click", (event) => {
         event.preventDefault();
-        const next = new URL(link.href);
-        history.pushState({}, "", next.pathname + next.search);
-        state = stateFromUrl();
+        const cat = link.getAttribute("data-category-filter");
+        const tag = link.getAttribute("data-tag-filter");
+        state = {
+          ...state,
+          cat: cat === null ? state.cat : cat,
+          tag: tag === null ? state.tag : state.tag === tag ? "" : tag,
+          page: 1,
+        };
+        writeUrl(state);
         render(state);
       });
     });

@@ -1,4 +1,6 @@
 ---
+import { FORMS } from "../config/theme.config.ts";
+
 const { compact = false } = Astro.props;
 ---
 
@@ -7,11 +9,19 @@ const { compact = false } = Astro.props;
     <div>
       <div class="text-xs font-medium uppercase tracking-wider text-muted-foreground">Newsletter</div>
       <p class="mt-2 text-sm text-muted-foreground">A short letter, once a fortnight. No noise.</p>
-      <form data-newsletter-form class="mt-3 flex gap-2">
+      <form
+        action={FORMS.newsletter.action}
+        method={FORMS.newsletter.method}
+        enctype={FORMS.newsletter.enctype}
+        class="mt-3 flex gap-2"
+      >
+        <label for="newsletter-email-compact" class="sr-only">Email address</label>
         <input
+          id="newsletter-email-compact"
+          name="email"
           type="email"
           required
-          aria-label="Email address"
+          autocomplete="email"
           placeholder="you@example.com"
           class="min-w-0 flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary"
         />
@@ -19,20 +29,27 @@ const { compact = false } = Astro.props;
           Join
         </button>
       </form>
-      <p data-newsletter-done class="mt-2 text-xs text-primary" role="status" hidden>Thanks &mdash; check your inbox.</p>
     </div>
   ) : (
     <section data-newsletter-cta class="border-t border-border/60 pt-16 pb-10">
       <div class="mx-auto max-w-2xl px-5 text-center">
-        <h2 class="font-serif text-3xl font-semibold tracking-tight sm:text-4xl">A quieter inbox.</h2>
+        <h2 class="font-serif text-3xl font-semibold sm:text-4xl">A quieter inbox.</h2>
         <p class="mt-3 text-muted-foreground">
           One thoughtful letter every other Sunday &mdash; new essays, things worth reading, and the occasional photograph.
         </p>
-        <form data-newsletter-form class="mx-auto mt-6 flex max-w-md flex-col gap-2 sm:flex-row">
+        <form
+          action={FORMS.newsletter.action}
+          method={FORMS.newsletter.method}
+          enctype={FORMS.newsletter.enctype}
+          class="mx-auto mt-6 flex max-w-md flex-col gap-2 sm:flex-row"
+        >
+          <label for="newsletter-email" class="sr-only">Email address</label>
           <input
+            id="newsletter-email"
+            name="email"
             type="email"
             required
-            aria-label="Email address"
+            autocomplete="email"
             placeholder="you@example.com"
             class="min-w-0 flex-1 rounded-md border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary"
           />
@@ -40,22 +57,8 @@ const { compact = false } = Astro.props;
             Subscribe
           </button>
         </form>
-        <p data-newsletter-done class="mt-3 text-sm text-primary" role="status" hidden>Thanks &mdash; check your inbox to confirm.</p>
         <p class="mt-3 text-xs text-muted-foreground">Free. Unsubscribe in one click.</p>
       </div>
     </section>
   )
 }
-
-<script>
-  document.addEventListener("submit", (event) => {
-    const form = event.target;
-    if (!(form instanceof HTMLFormElement) || !form.matches("[data-newsletter-form]")) return;
-    event.preventDefault();
-    const input = form.querySelector("input");
-    if (!input?.value) return;
-    input.value = "";
-    const done = form.parentElement?.querySelector("[data-newsletter-done]");
-    if (done) done.hidden = false;
-  });
-</script>
