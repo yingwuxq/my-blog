@@ -40,15 +40,15 @@ const thumbnailIsString = typeof post.thumbnail === "string";
       <div>
         <div class="flex items-center gap-3 text-xs uppercase tracking-wider text-muted-foreground">
           {category && (
-            <a href={`/categories/${category.slug}`} class="hover:text-foreground">
+            <a href={`/categories/${category.slug}`} class="inline-flex min-h-9 items-center hover:text-foreground">
               {category.name}
             </a>
           )}
           <span>&middot;</span>
           <time datetime={post.date}>{formatDate(post.date)}</time>
         </div>
-        <a href={`/blog/${post.slug}`}>
-          <h2 class="mt-2 font-serif text-2xl font-semibold leading-tight group-hover:text-primary sm:text-3xl">
+        <a href={`/blog/${post.slug}`} class="mt-1 block py-1">
+          <h2 class="font-serif text-2xl font-semibold leading-tight group-hover:text-primary sm:text-3xl">
             {post.title}
           </h2>
         </a>
@@ -81,10 +81,11 @@ const thumbnailIsString = typeof post.thumbnail === "string";
                   src={post.thumbnail}
                   alt=""
                   loading="lazy"
+                  width={440}
                   widths={[320, 440, 640]}
                   sizes="(min-width: 640px) 220px, calc(100vw - 40px)"
                   format="webp"
-                  quality={76}
+                  quality={64}
                   class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                 />
               )
@@ -120,10 +121,11 @@ const thumbnailIsString = typeof post.thumbnail === "string";
                   src={post.thumbnail}
                   alt=""
                   loading="lazy"
-                  widths={[320, 480, 640, 880]}
+                  width={480}
+                  widths={[320, 384, 480, 640]}
                   sizes="(min-width: 1024px) 352px, (min-width: 640px) calc((100vw - 80px) / 2), calc(100vw - 40px)"
                   format="webp"
-                  quality={76}
+                  quality={64}
                   class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                 />
               )
@@ -134,15 +136,15 @@ const thumbnailIsString = typeof post.thumbnail === "string";
       <div class="mt-4">
         <div class="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
           {category && (
-            <a href={`/categories/${category.slug}`} class="hover:text-foreground">
+            <a href={`/categories/${category.slug}`} class="inline-flex min-h-9 items-center hover:text-foreground">
               {category.name}
             </a>
           )}
           <span>&middot;</span>
           <time datetime={post.date}>{formatDate(post.date)}</time>
         </div>
-        <a href={`/blog/${post.slug}`}>
-          <h3 class="mt-2 font-serif text-xl font-semibold leading-snug group-hover:text-primary">
+        <a href={`/blog/${post.slug}`} class="mt-1 block py-1">
+          <h3 class="font-serif text-xl font-semibold leading-snug group-hover:text-primary">
             {post.title}
           </h3>
         </a>

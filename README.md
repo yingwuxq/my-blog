@@ -2,7 +2,7 @@
 
 [![Quiet Pages theme preview](./preview.webp)](https://quietpages-eta.vercel.app/)
 
-![Version 2.0.0](https://img.shields.io/badge/Version-2.0.0-111827?style=for-the-badge)
+![Version 2.1.0](https://img.shields.io/badge/Version-2.1.0-111827?style=for-the-badge)
 ![Astro 7](https://img.shields.io/badge/Astro-7-ff5d01?style=for-the-badge&logo=astro&logoColor=white)
 ![Tailwind CSS 4](https://img.shields.io/badge/Tailwind_CSS-4-38bdf8?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![MDX](https://img.shields.io/badge/MDX-enabled-1b1f24?style=for-the-badge&logo=mdx&logoColor=white)
@@ -149,7 +149,7 @@ Author avatars are local SVG files in [`public/avatars`](./public/avatars). Repl
 
 ## Forms
 
-The contact and newsletter forms use the actions configured in [`src/config/theme.config.ts`](./src/config/theme.config.ts). By default they use `mailto:` actions so the theme stays static and provider-free. Replace `FORMS.contact.action` and `FORMS.newsletter.action` with your form provider endpoint when deploying a real site.
+The contact and newsletter forms use the actions configured in [`src/config/theme.config.ts`](./src/config/theme.config.ts). By default those actions are empty, so the theme stays static and provider-free without shipping insecure `mailto:` form submissions. Replace `FORMS.contact.action` and `FORMS.newsletter.action` with HTTPS form provider endpoints when deploying a real site.
 
 ## Customization
 

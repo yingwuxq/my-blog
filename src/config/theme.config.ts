@@ -29,14 +29,14 @@ export const CONTACT = {
 
 export const FORMS = {
   contact: {
-    action: `mailto:${CONTACT.email}`,
+    action: "",
     method: "post",
-    enctype: "text/plain",
+    enctype: "application/x-www-form-urlencoded",
   },
   newsletter: {
-    action: `mailto:${CONTACT.email}?subject=Newsletter%20subscription`,
+    action: "",
     method: "post",
-    enctype: "text/plain",
+    enctype: "application/x-www-form-urlencoded",
   },
 };
 

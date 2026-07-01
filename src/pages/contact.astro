@@ -4,6 +4,11 @@ import Breadcrumbs from "../components/Breadcrumbs.astro";
 import Icon from "../components/Icon.astro";
 import { SITE } from "../lib/blog-data.js";
 import { CONTACT, FORMS } from "../config/theme.config.ts";
+
+const hasContactEndpoint = Boolean(FORMS.contact.action);
+const contactAction = hasContactEndpoint ? FORMS.contact.action : "/contact";
+const contactMethod = hasContactEndpoint ? FORMS.contact.method : "get";
+const contactEnctype = hasContactEndpoint ? FORMS.contact.enctype : undefined;
 ---
 
 <BaseLayout
@@ -24,9 +29,9 @@ import { CONTACT, FORMS } from "../config/theme.config.ts";
 
     <div class="mt-12 grid gap-12 lg:grid-cols-[1fr_240px]">
       <form
-        action={FORMS.contact.action}
-        method={FORMS.contact.method}
-        enctype={FORMS.contact.enctype}
+        action={contactAction}
+        method={contactMethod}
+        enctype={contactEnctype}
         class="space-y-5"
       >
         <div>

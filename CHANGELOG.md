@@ -2,6 +2,27 @@
 
 All notable changes to Quiet Pages will be documented in this file.
 
+## [2.1.0] - 2026-07-01
+
+### Added
+
+- Added a local SVG favicon and linked it from the shared document head.
+
+### Changed
+
+- Bumped the theme package version to `2.1.0`.
+- Tuned homepage hero and post-card image output to reduce PageSpeed image-delivery savings while preserving responsive Astro image generation.
+- Added `fetchpriority="high"` to the homepage LCP hero image.
+- Updated default contact and newsletter form behavior so unconfigured static themes no longer ship `mailto:` form submissions; forms now fall back to same-site `GET` targets until HTTPS provider endpoints are configured.
+- Updated README form guidance to document the empty default endpoints and recommended HTTPS provider setup.
+
+### Fixed
+
+- Fixed PageSpeed/Lighthouse best-practices warnings for `mailto:` form submissions.
+- Fixed the LCP request discovery warning by explicitly prioritizing the eagerly loaded hero image.
+- Improved small metadata link touch targets in post cards and featured content.
+- Fixed the missing favicon request that caused a browser console 404 in Lighthouse.
+
 ## [2.0.0] - 2026-06-30
 
 ### Added
