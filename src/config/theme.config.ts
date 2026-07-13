@@ -1,30 +1,29 @@
 const siteUrl = (
   import.meta.env.SITE_URL ||
   import.meta.env.PUBLIC_SITE_URL ||
-  "https://quietpages-eta.vercel.app"
+  "https://yingwu.com"
 ).replace(/\/$/, "");
 
 export const SITE = {
-  name: "Quiet Pages",
-  description:
-    "An independent magazine on writing, design, and the slow web. Published occasionally, read closely.",
+  name: "Yingwu",
+  description: "记录深度学习、机器学习与工程实践的个人博客。",
   url: siteUrl,
-  locale: "en-US",
-  language: "en",
+  locale: "zh-CN",
+  language: "zh",
   repositoryUrl: "https://github.com/andreialba/quietpages",
 };
 
 export const NAVIGATION = [
-  { to: "/", label: "Home" },
-  { to: "/blog", label: "Writing" },
-  { to: "/about", label: "About" },
-  { to: "/contact", label: "Contact" },
+  { to: "/", label: "首页" },
+  { to: "/blog", label: "文章" },
+  { to: "/tags", label: "标签" },
+  { to: "/about", label: "关于" },
 ];
 
 export const CONTACT = {
-  email: "hello@example.com",
-  socialHandle: "@quietpages",
-  socialUrl: "https://x.com/quietpages",
+  email: "",
+  socialHandle: "",
+  socialUrl: "",
 };
 
 export const FORMS = {
@@ -40,55 +39,34 @@ export const FORMS = {
   },
 };
 
-export const SOCIAL_LINKS = [
-  { href: "/rss.xml", label: "RSS feed", icon: "rss" },
-  { href: CONTACT.socialUrl, label: `${SITE.name} on X`, icon: "twitter" },
-  { href: SITE.repositoryUrl, label: `${SITE.name} on GitHub`, icon: "github" },
-  { href: `mailto:${CONTACT.email}`, label: "Email", icon: "mail" },
-];
+export const SOCIAL_LINKS = [{ href: "/rss.xml", label: "RSS feed", icon: "rss" }];
 
 export const authors = [
   {
-    slug: "elena-march",
-    name: "Elena March",
-    bio: "Writer & editor covering design, craft, and slow technology.",
-    longBio:
-      "Elena March writes about the quiet edges of design and technology. Previously an editor at two small magazines, she now publishes essays and field notes from a desk overlooking the harbour.",
-    avatar: "/avatars/elena-march.svg",
-  },
-  {
-    slug: "samuel-okafor",
-    name: "Samuel Okafor",
-    bio: "Software engineer with a soft spot for typography and the open web.",
-    longBio:
-      "Samuel builds tools for writers and reads more than he ships. He believes the best interfaces are the ones you don't notice.",
-    avatar: "/avatars/samuel-okafor.svg",
-  },
-  {
-    slug: "mira-iwasaki",
-    name: "Mira Iwasaki",
-    bio: "Photographer and essayist based between Kyoto and Lisbon.",
-    longBio:
-      "Mira's work sits at the intersection of place, memory, and the everyday object. Her essays have appeared in a number of small but loved publications.",
-    avatar: "/avatars/mira-iwasaki.svg",
+    slug: "yingwu",
+    name: "Yingwu",
+    bio: "深度学习与机器学习研究者。",
+    longBio: "记录深度学习、机器学习和工程实践的笔记与思考。",
+    avatar: "/avatars/yingwu.svg",
   },
 ];
 
 export const categories = [
-  { slug: "essays", name: "Essays" },
-  { slug: "design", name: "Design" },
-  { slug: "engineering", name: "Engineering" },
-  { slug: "field-notes", name: "Field Notes" },
-  { slug: "interviews", name: "Interviews" },
+  { slug: "deep-learning", name: "深度学习" },
+  { slug: "machine-learning", name: "机器学习" },
+  { slug: "engineering", name: "工程实践" },
+  { slug: "math", name: "数学基础" },
 ];
 
 export const tags = [
-  { slug: "writing", name: "Writing" },
-  { slug: "typography", name: "Typography" },
-  { slug: "minimalism", name: "Minimalism" },
-  { slug: "tools", name: "Tools" },
-  { slug: "travel", name: "Travel" },
-  { slug: "process", name: "Process" },
-  { slug: "web", name: "Web" },
-  { slug: "books", name: "Books" },
+  { slug: "transformer", name: "Transformer" },
+  { slug: "attention", name: "Attention" },
+  { slug: "deep-learning", name: "Deep Learning" },
+  { slug: "position-encoding", name: "Position Encoding" },
+  { slug: "normalization", name: "Normalization" },
+  { slug: "activation", name: "Activation" },
+  { slug: "loss-function", name: "Loss Function" },
+  { slug: "optimizer", name: "Optimizer" },
+  { slug: "regularization", name: "Regularization" },
+  { slug: "initialization", name: "Initialization" },
 ];

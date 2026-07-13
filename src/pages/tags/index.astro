@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { SITE, tags } from "../../lib/blog-data.js";
+---
+
+<BaseLayout
+  title={`标签 - ${SITE.name}`}
+  description="所有标签"
+  canonical="/tags"
+>
+  <div class="mx-auto max-w-4xl px-5 py-12">
+    <Breadcrumbs items={[{ label: "Home", to: "/" }, { label: "标签" }]} />
+    <h1 class="mt-4 font-serif text-4xl font-semibold sm:text-5xl">所有标签</h1>
+
+    <div class="mt-10 flex flex-wrap gap-3">
+      {
+        tags.map((tag) => (
+          <a
+            href={`/tags/${tag.slug}`}
+            class="rounded-full border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+          >
+            #{tag.name}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

@@ -5,7 +5,7 @@ import Footer from "../components/Footer.astro";
 import { SITE, imageSrc } from "../lib/blog-data.js";
 
 const {
-  title = `${SITE.name} - A quiet magazine on writing, design, and the slow web`,
+  title = `${SITE.name} — 记录技术、设计与思考`,
   description = SITE.description,
   canonical,
   ogType = "website",
@@ -30,7 +30,7 @@ const ogImageUrl = absoluteUrl(ogImage);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -64,6 +64,7 @@ const ogImageUrl = absoluteUrl(ogImage);
       crossorigin
     />
     <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/rss.xml" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
     {
       jsonLd && (
         <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
@@ -82,7 +83,7 @@ const ogImageUrl = absoluteUrl(ogImage);
     </script>
   </head>
   <body>
-    <a href="#main-content" class="skip-link">Skip to content</a>
+    <a href="#main-content" class="skip-link">跳到内容</a>
     <div class="flex min-h-dvh flex-col">
       <Header />
       <main id="main-content" class="flex-1">
