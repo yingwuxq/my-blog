@@ -10,7 +10,7 @@ export const SITE = {
   url: siteUrl,
   locale: "zh-CN",
   language: "zh",
-  repositoryUrl: "https://github.com/andreialba/quietpages",
+  repositoryUrl: "https://github.com/yingwuxq/my-blog",
 };
 
 export const NAVIGATION = [

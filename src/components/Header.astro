@@ -4,6 +4,7 @@ import { SITE } from "../lib/blog-data.js";
 import { NAVIGATION } from "../config/theme.config.ts";
 
 const current = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isHome = current === "/";
 ---
 
 <header
@@ -13,11 +14,12 @@ const current = Astro.url.pathname.replace(/\/$/, "") || "/";
   <div
     id="header-bar"
     class="mx-auto flex w-full items-center justify-between rounded-2xl px-4 py-2 transition-all duration-300"
+    data-hero={isHome ? "true" : "false"}
   >
     <a
       href="/"
+      id="header-brand"
       class="shrink-0 text-sm font-medium tracking-tight transition-opacity hover:opacity-60"
-      style="color: var(--foreground)"
     >
       {SITE.name}
     </a>
@@ -30,15 +32,8 @@ const current = Astro.url.pathname.replace(/\/$/, "") || "/";
           return (
             <a
               href={item.to}
-              class="rounded-md px-3 py-1.5 text-sm font-medium transition-colors duration-200"
-              style={{
-                color: active
-                  ? "var(--foreground)"
-                  : "var(--muted-foreground)",
-              }}
+              class="header-link rounded-md px-3 py-1.5 text-sm font-medium transition-colors duration-200"
               aria-current={active ? "page" : undefined}
-              onmouseover="this.style.color='var(--foreground)'"
-              onmouseout="this.style.color=this.getAttribute('aria-current') ? 'var(--foreground)' : 'var(--muted-foreground)'"
             >
               {item.label}
             </a>
@@ -49,8 +44,8 @@ const current = Astro.url.pathname.replace(/\/$/, "") || "/";
         type="button"
         data-theme-toggle
         aria-label="Toggle dark mode"
-        class="ml-1 inline-flex h-8 w-8 items-center justify-center rounded-md transition-colors hover:bg-muted"
-        style="color: var(--muted-foreground)"
+        id="header-theme-btn"
+        class="ml-1 inline-flex h-8 w-8 items-center justify-center rounded-md transition-colors"
       >
         <span data-theme-icon="moon"><Icon name="moon" class="h-4 w-4" /></span>
         <span data-theme-icon="sun" hidden><Icon name="sun" class="h-4 w-4" /></span>
@@ -60,16 +55,66 @@ const current = Astro.url.pathname.replace(/\/$/, "") || "/";
 </header>
 
 <style>
-  #header-bar {
+  /* Non-home pages: always show the bar with theme colors */
+  #header-bar[data-hero="false"] {
+    max-width: 720px;
+    background: color-mix(in oklab, var(--background) 85%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px -12px rgba(0,0,0,0.22);
+  }
+
+  #header-bar[data-hero="false"],
+  #header-bar[data-hero="false"] .header-link,
+  #header-bar[data-hero="false"] #header-brand,
+  #header-bar[data-hero="false"] #header-theme-btn {
+    color: var(--foreground);
+  }
+
+  #header-bar[data-hero="false"] #header-theme-btn:hover {
+    background: var(--muted);
+  }
+
+  /* Home page hero: transparent, white text */
+  #header-bar[data-hero="true"] {
     max-width: 880px;
     background: transparent;
   }
-  #header-bar.scrolled {
+
+  #header-bar[data-hero="true"],
+  #header-bar[data-hero="true"] .header-link,
+  #header-bar[data-hero="true"] #header-brand,
+  #header-bar[data-hero="true"] #header-theme-btn {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  #header-bar[data-hero="true"] .header-link:hover,
+  #header-bar[data-hero="true"] #header-brand:hover {
+    color: rgba(255, 255, 255, 1);
+  }
+
+  #header-bar[data-hero="true"] #header-theme-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  /* Home page scrolled: theme colors */
+  #header-bar[data-hero="true"].scrolled {
     max-width: 720px;
     background: color-mix(in oklab, var(--background) 95%, transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 10px 30px -12px rgba(0,0,0,0.22);
+  }
+
+  #header-bar[data-hero="true"].scrolled,
+  #header-bar[data-hero="true"].scrolled .header-link,
+  #header-bar[data-hero="true"].scrolled #header-brand,
+  #header-bar[data-hero="true"].scrolled #header-theme-btn {
+    color: var(--foreground);
+  }
+
+  #header-bar[data-hero="true"].scrolled #header-theme-btn:hover {
+    background: var(--muted);
   }
 </style>
 
@@ -77,7 +122,10 @@ const current = Astro.url.pathname.replace(/\/$/, "") || "/";
   const bar = document.getElementById("header-bar");
   if (bar) {
     const updateBar = () => {
-      bar.classList.toggle("scrolled", window.scrollY > 64);
+      const isHero = bar.dataset.hero === "true";
+      if (isHero) {
+        bar.classList.toggle("scrolled", window.scrollY > 64);
+      }
     };
     updateBar();
     window.addEventListener("scroll", updateBar, { passive: true });

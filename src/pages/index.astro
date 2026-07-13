@@ -62,8 +62,11 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
         <h1 class="font-serif text-5xl font-semibold leading-[1.02] tracking-tight sm:text-7xl lg:text-8xl">
           {SITE.name}
         </h1>
-        <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/86 sm:text-xl">
-          记录深度学习、机器学习与工程实践。
+        <p class="mx-auto mt-4 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg">
+          记录深度学习、机器学习与工程实践的个人博客。
+        </p>
+        <p class="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-white/60">
+          Transformer / Attention / LLM / PyTorch
         </p>
         <div class="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
           <a
@@ -178,6 +181,19 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
         浏览全部 <Icon name="arrow-right" class="h-3.5 w-3.5" />
       </a>
     </div>
+  </section>
+
+  <!-- Finale Image -->
+  <section class="relative h-64 overflow-hidden sm:h-80">
+    <picture>
+      <source srcSet="/assets/light-finale.avif" media="(prefers-color-scheme: light)" />
+      <img
+        src="/assets/dark-finale.avif"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover"
+        loading="lazy"
+      />
+    </picture>
   </section>
 </BaseLayout>
 
