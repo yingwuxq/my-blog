@@ -73,14 +73,19 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
         <p class="mx-auto mt-3 max-w-xl text-sm leading-relaxed tracking-wider text-white/60">
           Transformer &middot; Attention &middot; LLM &middot; PyTorch
         </p>
-        <div class="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+        <div class="mt-10 flex flex-wrap items-center justify-center gap-6">
           <a
             href={`/blog/${featured.slug}`}
-            class="group inline-flex items-center gap-2 border-b border-white pb-1 text-sm font-medium text-white hover:border-white/70 hover:text-white/82"
+            class="group inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:bg-white/10"
+            style="text-shadow: 0 1px 4px rgba(0,0,0,0.25)"
           >
-            开始阅读 <Icon name="arrow-right" class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+            开始阅读 <Icon name="arrow-right" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
           </a>
-          <a href="/blog" class="text-sm text-white/76 hover:text-white">
+          <a
+            href="/blog"
+            class="inline-flex items-center rounded-lg px-5 py-2.5 text-sm font-medium text-white/80 transition-all duration-200 hover:bg-white/10 hover:text-white"
+            style="text-shadow: 0 1px 4px rgba(0,0,0,0.25)"
+          >
             浏览所有文章
           </a>
         </div>

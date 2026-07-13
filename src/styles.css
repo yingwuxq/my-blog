@@ -458,10 +458,16 @@
     background: color-mix(in oklab, var(--color-primary) 4%, transparent);
   }
 
+  /* KaTeX inline formulas */
   & .katex {
     font-size: 1.05em;
     line-height: 1.4;
     color: var(--color-foreground);
+  }
+
+  /* Display math $$...$$: center paragraphs that contain only KaTeX */
+  & p:has(> .katex:only-child) {
+    text-align: center;
   }
 
   & .katex-display {
