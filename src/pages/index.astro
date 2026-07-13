@@ -24,21 +24,25 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
   canonical="/"
   flushFooter
 >
-  <section
-    class="relative -mt-[68px] min-h-[calc(100svh-2rem)] overflow-hidden border-b border-border/60 pt-[68px] sm:min-h-[760px]"
-    style="background: center / cover no-repeat url(/assets/dark-hero.avif)"
-  >
+  <section class="relative -mt-[68px] min-h-[calc(100svh-2rem)] overflow-hidden border-b border-border/60 pt-[68px] sm:min-h-[760px]">
     <video
-      id="hero-video"
+      autoplay
       muted
       loop
       playsinline
-      preload="auto"
-      class="absolute inset-0 h-full w-full object-cover"
-      style="opacity: 0; transition: opacity 0.5s ease"
+      poster="/assets/light-hero.avif"
+      class="absolute inset-0 h-full w-full object-cover dark:hidden"
     >
       <source src="/assets/light-hero.mp4" type="video/mp4" />
     </video>
+    <img
+      src="/assets/dark-hero.avif"
+      alt=""
+      class="absolute inset-0 hidden h-full w-full object-cover object-center dark:block"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
 
     <!-- Light overlay: bottom gradient fades into page bg -->
     <div
@@ -198,22 +202,6 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
 </BaseLayout>
 
 <script>
-  /* Hero video: attempt playback */
-  (function(){
-    const v = document.getElementById("hero-video");
-    if (!v) return;
-    const tryPlay = () => {
-      v.play().then(function() {
-        v.style.opacity = "1";
-      }).catch(function(e) {
-        /* autoplay blocked - retry on first interaction */
-        document.addEventListener("click", tryPlay, { once: true });
-        document.addEventListener("touchstart", tryPlay, { once: true });
-      });
-    };
-    tryPlay();
-  })();
-
   const latest = document.querySelector("[data-home-latest]");
   if (latest) {
     const buttons = [...latest.querySelectorAll("[data-home-filter]")];

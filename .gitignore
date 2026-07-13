@@ -25,5 +25,5 @@ npm-cache/
 *.sw?
 
 # Source assets (non-public)
-assets/
+/assets/
 note/
