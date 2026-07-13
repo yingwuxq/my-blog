@@ -25,25 +25,30 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
   flushFooter
 >
   <section class="relative -mt-[68px] min-h-[calc(100svh-2rem)] overflow-hidden border-b border-border/60 pt-[68px] sm:min-h-[760px]">
-    <!-- Background: light mode video, dark mode image -->
+    <!-- Background image (always visible, immediate fallback) -->
+    <picture>
+      <source srcSet="/assets/light-hero.avif" media="(prefers-color-scheme: light)" />
+      <img
+        src="/assets/dark-hero.avif"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover object-center"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
+    <!-- Video overlays on top in light mode -->
     <video
       id="hero-video"
       muted
       loop
       playsinline
       preload="auto"
-      class="absolute inset-0 h-full w-full object-cover dark:hidden"
+      class="absolute inset-0 h-full w-full object-cover"
+      style="display: none"
     >
       <source src="/assets/light-hero.mp4" type="video/mp4" />
     </video>
-    <img
-      src="/assets/dark-hero.avif"
-      alt=""
-      class="absolute inset-0 hidden h-full w-full object-cover object-center dark:block"
-      loading="eager"
-      fetchpriority="high"
-      decoding="async"
-    />
 
     <!-- Light overlay: bottom gradient fades into page bg -->
     <div
@@ -203,16 +208,15 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
 </BaseLayout>
 
 <script>
-  /* Hero video: ensure playback */
+  /* Hero video: show and play in light mode */
   (function(){
     const v = document.getElementById("hero-video");
     if (!v) return;
-    const isDark = document.documentElement.classList.contains("dark");
-    if (!isDark) {
-      const play = () => { v.play().catch(function() { /* autoplay blocked, wait for interaction */ }) };
-      play();
-      document.addEventListener("visibilitychange", function() { if (!document.hidden) play(); });
-    }
+    if (document.documentElement.classList.contains("dark")) return;
+    v.style.display = "block";
+    const play = () => { v.play().catch(function() { /* autoplay blocked */ }) };
+    play();
+    document.addEventListener("visibilitychange", function() { if (!document.hidden) play(); });
   })();
 
   const latest = document.querySelector("[data-home-latest]");
