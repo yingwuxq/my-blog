@@ -27,11 +27,11 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
   <section class="relative -mt-[68px] min-h-[calc(100svh-2rem)] overflow-hidden border-b border-border/60 pt-[68px] sm:min-h-[760px]">
     <!-- Background: light mode video, dark mode image -->
     <video
-      autoplay
+      id="hero-video"
       muted
       loop
       playsinline
-      poster="/assets/light-hero.avif"
+      preload="auto"
       class="absolute inset-0 h-full w-full object-cover dark:hidden"
     >
       <source src="/assets/light-hero.mp4" type="video/mp4" />
@@ -203,6 +203,18 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
 </BaseLayout>
 
 <script>
+  /* Hero video: ensure playback */
+  (function(){
+    const v = document.getElementById("hero-video");
+    if (!v) return;
+    const isDark = document.documentElement.classList.contains("dark");
+    if (!isDark) {
+      const play = () => { v.play().catch(function() { /* autoplay blocked, wait for interaction */ }) };
+      play();
+      document.addEventListener("visibilitychange", function() { if (!document.hidden) play(); });
+    }
+  })();
+
   const latest = document.querySelector("[data-home-latest]");
   if (latest) {
     const buttons = [...latest.querySelectorAll("[data-home-filter]")];
