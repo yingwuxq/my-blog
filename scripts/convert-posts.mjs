@@ -32,7 +32,7 @@ for (const file of files) {
     `category: ${JSON.stringify(categorySlug(data.category || ""))}`,
     `tags: [${(data.tags || []).map((t) => JSON.stringify(t)).join(", ")}]`,
     `author: ${JSON.stringify("yingwu")}`,
-    "featured: false",
+    `featured: ${slug.startsWith("00-") ? "true" : "false"}`,
     "draft: false",
     "---",
     "",

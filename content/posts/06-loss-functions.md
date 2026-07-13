@@ -131,7 +131,7 @@ $$\text{PPL} = \exp(\mathcal{L}_{\text{CE}})$$
 
 BERT 使用的掩码语言模型损失，是 Cross-Entropy 的特例——只在被掩码的位置计算损失：
 
-$$\mathcal{L}_{\text{MLM}} = -\frac{1}{|M|} \sum_{i \in M} \log P(x_i | x_{\setminus M})$$
+$$\mathcal{L}_{\text{MLM}} = -\frac{1}{|M|} \sum_{i \in M} \log P(x_i \mid x_{\setminus M})$$
 
 其中 $M$ 是被掩码位置集合，$|M|$ 是掩码位置总数，$x_{\setminus M}$ 是未掩码的上下文。
 
@@ -351,7 +351,7 @@ $$\mathcal{L}_{\text{CE}} = D_{\text{KL}}(y_{\text{true}} \parallel \hat{y}) + H
 | 损失函数 | 公式 | 输入 | 输出范围 | 主要应用 | 特性 |
 |----------|------|------|---------|---------|------|
 | Cross-Entropy | $-\sum y \log \hat{y}$ | logits + 标签 | $[0, \infty)$ | 分类、语言模型 | 标准分类损失 |
-| MLM Loss | $-\frac{1}{|M|} \sum_{i \in M} \log P(x_i \mid \cdot)$ | logits + 掩码标签 | $[0, \infty)$ | BERT 预训练 | 仅在掩码位置计算 |
+| MLM Loss | $-\frac{1}{\vert M \vert} \sum_{i \in M} \log P(x_i \mid \cdot)$ | logits + 掩码标签 | $[0, \infty)$ | BERT 预训练 | 仅在掩码位置计算 |
 | InfoNCE（对比） | $-\log \frac{\exp(s_{ii}/\tau)}{\sum_j \exp(s_{ij}/\tau)}$ | 嵌入对 | $(-\infty, \infty)$ | CLIP、SimCLR | 拉近正对、推远负对 |
 | KL Divergence | $\sum P \log(P/Q)$ | 两个分布 | $[0, \infty)$ | 蒸馏、RLHF | 不对称性需要注意 |
 
