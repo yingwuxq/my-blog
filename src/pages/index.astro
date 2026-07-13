@@ -24,25 +24,29 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
   canonical="/"
   flushFooter
 >
-  <section class="relative -mt-[68px] min-h-[calc(100svh-2rem)] overflow-hidden border-b border-border/60 pt-[68px] sm:min-h-[760px]">
+  <section
+    class="relative -mt-[68px] min-h-[calc(100svh-2rem)] overflow-hidden border-b border-border/60 pt-[68px] sm:min-h-[760px]"
+    style="background: center / cover no-repeat url(/assets/dark-hero.avif)"
+  >
     <video
+      id="hero-video"
       autoplay
       muted
       loop
       playsinline
-      poster="/assets/light-hero.avif"
-      class="absolute inset-0 h-full w-full object-cover dark:hidden"
+      preload="auto"
+      class="absolute inset-0 h-full w-full object-cover"
+      style="transition: opacity 0.5s"
     >
       <source src="/assets/light-hero.mp4" type="video/mp4" />
     </video>
-    <img
-      src="/assets/dark-hero.avif"
-      alt=""
-      class="absolute inset-0 hidden h-full w-full object-cover object-center dark:block"
-      loading="eager"
-      fetchpriority="high"
-      decoding="async"
-    />
+    <script>
+      (function(){
+        var v = document.getElementById("hero-video");
+        if (!v) return;
+        v.play().catch(function(){});
+      })();
+    </script>
 
     <!-- Light overlay: bottom gradient fades into page bg -->
     <div
