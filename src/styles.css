@@ -465,8 +465,8 @@
     color: var(--color-foreground);
   }
 
-  /* Display math $$...$$: center paragraphs that contain only KaTeX */
-  & p:has(> .katex:only-child) {
+  /* Display math $$...$$: centered via JS-added class */
+  & p.is-display-math {
     text-align: center;
   }
 

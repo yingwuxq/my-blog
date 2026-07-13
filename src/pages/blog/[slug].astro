@@ -376,4 +376,11 @@ const jsonLd = {
       } catch (error) {}
     });
   });
+
+  /* Center display math (p containing only a .katex element) */
+  document.querySelectorAll(".prose-article p").forEach(function(p) {
+    if (p.children.length === 1 && p.children[0].classList.contains("katex")) {
+      p.classList.add("is-display-math");
+    }
+  });
 </script>

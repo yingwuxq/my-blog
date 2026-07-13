@@ -25,23 +25,17 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
   flushFooter
 >
   <section class="relative -mt-[68px] min-h-[calc(100svh-2rem)] overflow-hidden border-b border-border/60 pt-[68px] sm:min-h-[760px]">
-    <!-- Light mode: animated GIF -->
-    <img
-      src="/assets/light-hero.gif"
-      alt=""
-      class="absolute inset-0 h-full w-full object-cover object-center dark:hidden"
-      loading="eager"
-      fetchpriority="high"
-    />
-    <!-- Dark mode: static image -->
-    <img
-      src="/assets/dark-hero.avif"
-      alt=""
-      class="absolute inset-0 hidden h-full w-full object-cover object-center dark:block"
-      loading="eager"
-      fetchpriority="high"
-      decoding="async"
-    />
+    <picture>
+      <source srcSet="/assets/light-hero.avif" media="(prefers-color-scheme: light)" />
+      <img
+        src="/assets/dark-hero.avif"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover object-center"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
 
     <!-- Light overlay: bottom gradient fades into page bg -->
     <div
