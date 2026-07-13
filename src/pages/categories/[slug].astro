@@ -19,7 +19,7 @@ const list = await postsByCategory(category.slug);
   canonical={`/categories/${category.slug}`}
 >
   <div class="mx-auto max-w-6xl px-5 py-12">
-    <Breadcrumbs items={[{ label: "Home", to: "/" }, { label: "分类", to: "/blog" }, { label: category.name }]} />
+    <Breadcrumbs items={[{ label: "首页", to: "/" }, { label: "分类", to: "/blog" }, { label: category.name }]} />
     <header class="mt-6 border-b border-border pb-8">
       <div class="text-xs font-medium uppercase tracking-[0.2em] text-primary">Category</div>
       <h1 class="mt-2 font-serif text-4xl font-semibold sm:text-5xl">{category.name}</h1>

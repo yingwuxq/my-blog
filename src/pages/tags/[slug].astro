@@ -18,7 +18,7 @@ const list = await postsByTag(tag.slug);
   canonical={`/tags/${tag.slug}`}
 >
   <div class="mx-auto max-w-4xl px-5 py-12">
-    <Breadcrumbs items={[{ label: "Home", to: "/" }, { label: "Tags" }, { label: `#${tag.name}` }]} />
+    <Breadcrumbs items={[{ label: "首页", to: "/" }, { label: "标签", to: "/tags" }, { label: `#${tag.name}` }]} />
     <header class="mt-6 border-b border-border pb-8">
       <div class="text-xs font-medium uppercase tracking-[0.2em] text-primary">Tag</div>
       <h1 class="mt-2 font-serif text-4xl font-semibold">#{tag.name}</h1>

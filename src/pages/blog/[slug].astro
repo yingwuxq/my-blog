@@ -78,8 +78,8 @@ const jsonLd = {
   <article class="mx-auto max-w-6xl px-5 py-10">
     <Breadcrumbs
       items={[
-        { label: "Home", to: "/" },
-        { label: "Archive", to: "/blog" },
+        { label: "首页", to: "/" },
+        { label: "文章", to: "/blog" },
         ...(category ? [{ label: category.name, to: `/categories/${category.slug}` }] : []),
         { label: post.title },
       ]}
@@ -161,7 +161,7 @@ const jsonLd = {
     }
 
     <div class="mt-12 grid gap-12 lg:grid-cols-[1fr_220px]">
-      <div class="mx-auto w-full min-w-0 max-w-2xl">
+      <div class="mx-auto w-full min-w-0 max-w-[720px]">
         <div class="prose-article">
           <Content />
         </div>
