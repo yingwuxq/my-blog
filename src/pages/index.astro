@@ -24,11 +24,24 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
   canonical="/"
   flushFooter
 >
-  <section
-    id="hero"
-    class="relative -mt-[68px] min-h-[calc(100svh-2rem)] overflow-hidden border-b border-border/60 pt-[68px] sm:min-h-[760px]"
-    style="background: center / cover no-repeat url(/assets/dark-hero.avif)"
-  >
+  <section class="relative -mt-[68px] min-h-[calc(100svh-2rem)] overflow-hidden border-b border-border/60 pt-[68px] sm:min-h-[760px]">
+    <!-- Light mode: animated GIF -->
+    <img
+      src="/assets/light-hero.gif"
+      alt=""
+      class="absolute inset-0 h-full w-full object-cover object-center dark:hidden"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <!-- Dark mode: static image -->
+    <img
+      src="/assets/dark-hero.avif"
+      alt=""
+      class="absolute inset-0 hidden h-full w-full object-cover object-center dark:block"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
 
     <!-- Light overlay: bottom gradient fades into page bg -->
     <div
@@ -188,34 +201,6 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
 </BaseLayout>
 
 <script>
-  /* Hero video: dynamically create and play */
-  (function(){
-    var hero = document.getElementById("hero");
-    if (!hero) return;
-    var v = document.createElement("video");
-    v.autoplay = true;
-    v.muted = true;
-    v.loop = true;
-    v.playsInline = true;
-    v.preload = "auto";
-    v.className = "absolute inset-0 h-full w-full object-cover";
-    var s = document.createElement("source");
-    s.src = "/assets/light-hero.mp4";
-    s.type = "video/mp4";
-    v.appendChild(s);
-    hero.prepend(v);
-    var tryPlay = function() {
-      v.play().then(function() {
-        /* playing */
-      }).catch(function() {
-        /* autoplay blocked - retry on interaction */
-        document.addEventListener("click", tryPlay, { once: true });
-        document.addEventListener("touchstart", tryPlay, { once: true });
-      });
-    };
-    tryPlay();
-  })();
-
   const latest = document.querySelector("[data-home-latest]");
   if (latest) {
     const buttons = [...latest.querySelectorAll("[data-home-filter]")];
