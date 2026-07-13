@@ -24,20 +24,10 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
   canonical="/"
   flushFooter
 >
-  <section class="relative -mt-[68px] min-h-[calc(100svh-2rem)] overflow-hidden border-b border-border/60 pt-[68px] sm:min-h-[760px]">
-    <!-- Background image (always visible, immediate fallback) -->
-    <picture>
-      <source srcSet="/assets/light-hero.avif" media="(prefers-color-scheme: light)" />
-      <img
-        src="/assets/dark-hero.avif"
-        alt=""
-        class="absolute inset-0 h-full w-full object-cover object-center"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-    </picture>
-    <!-- Video overlays on top in light mode -->
+  <section
+    class="relative -mt-[68px] min-h-[calc(100svh-2rem)] overflow-hidden border-b border-border/60 pt-[68px] sm:min-h-[760px]"
+    style="background: center / cover no-repeat url(/assets/dark-hero.avif)"
+  >
     <video
       id="hero-video"
       muted
@@ -45,7 +35,7 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
       playsinline
       preload="auto"
       class="absolute inset-0 h-full w-full object-cover"
-      style="display: none"
+      style="opacity: 0; transition: opacity 0.5s ease"
     >
       <source src="/assets/light-hero.mp4" type="video/mp4" />
     </video>
@@ -208,15 +198,20 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
 </BaseLayout>
 
 <script>
-  /* Hero video: show and play in light mode */
+  /* Hero video: attempt playback */
   (function(){
     const v = document.getElementById("hero-video");
     if (!v) return;
-    if (document.documentElement.classList.contains("dark")) return;
-    v.style.display = "block";
-    const play = () => { v.play().catch(function() { /* autoplay blocked */ }) };
-    play();
-    document.addEventListener("visibilitychange", function() { if (!document.hidden) play(); });
+    const tryPlay = () => {
+      v.play().then(function() {
+        v.style.opacity = "1";
+      }).catch(function(e) {
+        /* autoplay blocked - retry on first interaction */
+        document.addEventListener("click", tryPlay, { once: true });
+        document.addEventListener("touchstart", tryPlay, { once: true });
+      });
+    };
+    tryPlay();
   })();
 
   const latest = document.querySelector("[data-home-latest]");
