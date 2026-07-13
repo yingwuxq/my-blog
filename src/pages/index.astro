@@ -23,7 +23,6 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
   description={SITE.description}
   canonical="/"
   flushFooter
-  footerScenery={true}
 >
   <section class="relative -mt-[68px] min-h-[calc(100svh-2rem)] overflow-hidden border-b border-border/60 pt-[68px] sm:min-h-[760px]">
     <!-- Background images with light/dark switching -->
@@ -59,9 +58,12 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
     />
 
     <div class="relative mx-auto flex min-h-[calc(100svh-6rem)] max-w-6xl items-center justify-center px-5 py-20 sm:min-h-[680px] sm:py-24">
-      <div class="mx-auto max-w-4xl text-center drop-shadow-[0_1px_24px_rgba(0,0,0,0.35)]">
-        <h1 class="font-serif text-7xl font-bold leading-[0.95] tracking-tight sm:text-8xl lg:text-9xl">
-          <span class="text-white" style="text-shadow: 0 2px 40px rgba(0,0,0,0.3);">
+      <div class="mx-auto max-w-4xl text-center">
+        <h1 class="font-serif text-7xl font-bold leading-[0.92] tracking-tight sm:text-8xl lg:text-9xl">
+          <span
+            class="bg-gradient-to-b from-white via-white/95 to-white/70 bg-clip-text text-transparent"
+            style="filter: drop-shadow(0 4px 30px rgba(0,0,0,0.35))"
+          >
             {SITE.name}
           </span>
         </h1>
