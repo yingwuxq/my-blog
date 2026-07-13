@@ -23,6 +23,7 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
   description={SITE.description}
   canonical="/"
   flushFooter
+  footerScenery={true}
 >
   <section class="relative -mt-[68px] min-h-[calc(100svh-2rem)] overflow-hidden border-b border-border/60 pt-[68px] sm:min-h-[760px]">
     <!-- Background images with light/dark switching -->
@@ -58,15 +59,17 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
     />
 
     <div class="relative mx-auto flex min-h-[calc(100svh-6rem)] max-w-6xl items-center justify-center px-5 py-20 sm:min-h-[680px] sm:py-24">
-      <div class="mx-auto max-w-3xl text-center text-white drop-shadow-[0_1px_18px_rgba(0,0,0,0.28)]">
-        <h1 class="font-serif text-5xl font-semibold leading-[1.02] tracking-tight sm:text-7xl lg:text-8xl">
-          {SITE.name}
+      <div class="mx-auto max-w-4xl text-center drop-shadow-[0_1px_24px_rgba(0,0,0,0.35)]">
+        <h1 class="font-serif text-7xl font-bold leading-[0.95] tracking-tight sm:text-8xl lg:text-9xl">
+          <span class="text-white" style="text-shadow: 0 2px 40px rgba(0,0,0,0.3);">
+            {SITE.name}
+          </span>
         </h1>
-        <p class="mx-auto mt-4 max-w-lg text-base leading-relaxed text-white/70 sm:text-lg">
+        <p class="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-white/80 sm:text-xl">
           记录深度学习、机器学习与工程实践的个人博客。
         </p>
-        <p class="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-white/60">
-          Transformer / Attention / LLM / PyTorch
+        <p class="mx-auto mt-3 max-w-xl text-sm leading-relaxed tracking-wider text-white/60">
+          Transformer &middot; Attention &middot; LLM &middot; PyTorch
         </p>
         <div class="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
           <a
@@ -183,18 +186,6 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
     </div>
   </section>
 
-  <!-- Finale Image -->
-  <section class="relative h-64 overflow-hidden sm:h-80">
-    <picture>
-      <source srcSet="/assets/light-finale.avif" media="(prefers-color-scheme: light)" />
-      <img
-        src="/assets/dark-finale.avif"
-        alt=""
-        class="absolute inset-0 h-full w-full object-cover"
-        loading="lazy"
-      />
-    </picture>
-  </section>
 </BaseLayout>
 
 <script>

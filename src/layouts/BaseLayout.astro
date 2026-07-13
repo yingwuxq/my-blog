@@ -12,6 +12,7 @@ const {
   ogImage,
   jsonLd,
   flushFooter = false,
+  footerScenery = false,
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString() || SITE.url;
@@ -89,7 +90,7 @@ const ogImageUrl = absoluteUrl(ogImage);
       <main id="main-content" class="flex-1" style="padding-top: 68px">
         <slot />
       </main>
-      <Footer flush={flushFooter} />
+      <Footer flush={flushFooter} scenery={footerScenery} />
     </div>
   </body>
 </html>
