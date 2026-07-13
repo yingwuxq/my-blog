@@ -25,18 +25,25 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
   flushFooter
 >
   <section class="relative -mt-[68px] min-h-[calc(100svh-2rem)] overflow-hidden border-b border-border/60 pt-[68px] sm:min-h-[760px]">
-    <!-- Background images with light/dark switching -->
-    <picture>
-      <source srcSet="/assets/light-hero.avif" media="(prefers-color-scheme: light)" />
-      <img
-        src="/assets/dark-hero.avif"
-        alt=""
-        class="absolute inset-0 h-full w-full object-cover object-center"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-    </picture>
+    <!-- Background: light mode video, dark mode image -->
+    <video
+      autoPlay
+      muted
+      loop
+      playsInline
+      poster="/assets/light-hero.avif"
+      class="absolute inset-0 h-full w-full object-cover dark:hidden"
+    >
+      <source src="/assets/light-hero.mp4" type="video/mp4" />
+    </video>
+    <img
+      src="/assets/dark-hero.avif"
+      alt=""
+      class="absolute inset-0 hidden h-full w-full object-cover object-center dark:block"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
 
     <!-- Light overlay: bottom gradient fades into page bg -->
     <div
