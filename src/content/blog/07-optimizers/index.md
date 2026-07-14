@@ -7,6 +7,7 @@ tags: ["optimizer", "deep-learning"]
 author: "yingwu"
 featured: false
 draft: false
+thumbnail: ./cover.webp
 ---
 
 ## 概述

@@ -7,6 +7,7 @@ tags: ["deep-learning"]
 author: "yingwu"
 featured: true
 draft: false
+thumbnail: ./cover.webp
 ---
 
 欢迎来到 **Yingwu**。
@@ -26,4 +27,4 @@ draft: false
 
 ## 开始阅读
 
-从左侧的目录选择感兴趣的话题，或通过搜索查找特定内容。祝阅读愉快！
+从目录选择感兴趣的话题，或通过搜索查找特定内容。祝阅读愉快！
