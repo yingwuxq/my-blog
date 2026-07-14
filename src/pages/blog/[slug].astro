@@ -374,16 +374,20 @@ const jsonLd = {
     });
   });
 
-  /* Center display math: only when p has ONLY a .katex element AND no text */
+  /* Center display math: p contains ONLY a single .katex element, no own text */
   document.querySelectorAll(".prose-article p").forEach(function(p) {
-    if (p.children.length === 1 && p.children[0].classList.contains("katex") && !p.textContent.trim()) {
-      p.classList.add("is-display-math");
+    if (p.children.length !== 1) return;
+    var el = p.children[0];
+    if (!el.classList.contains("katex")) return;
+    /* Check all text nodes - display math has NO text outside the katex span */
+    var hasOwnText = false;
+    for (var i = 0; i < p.childNodes.length; i++) {
+      var n = p.childNodes[i];
+      if (n.nodeType === 3 && n.textContent.trim()) {
+        hasOwnText = true;
+        break;
+      }
     }
-  });
-
-  /* Add callout styles to blockquotes with strong first-child */
-  document.querySelectorAll(".prose-article blockquote").forEach(function(bq) {
-    var s = bq.querySelector("strong");
-    if (s) bq.style.paddingTop = "0.5rem";
+    if (!hasOwnText) p.classList.add("is-display-math");
   });
 </script>
