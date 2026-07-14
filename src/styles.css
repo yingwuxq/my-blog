@@ -155,16 +155,6 @@
 }
 
 @layer components {
-  @keyframes hero-shimmer {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
-
-  .hero-title {
-    background-size: 200% 200% !important;
-    animation: hero-shimmer 6s ease-in-out infinite !important;
-  }
-
   .skip-link {
     position: fixed;
     left: 1rem;

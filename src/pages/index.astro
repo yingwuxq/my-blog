@@ -57,6 +57,17 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
     />
 
     <div class="relative mx-auto flex min-h-[calc(100svh-6rem)] max-w-6xl items-center justify-center px-5 py-20 sm:min-h-[680px] sm:py-24">
+      <style is:inline>
+        @keyframes hero-shimmer {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .hero-title {
+          background-size: 200% 200% !important;
+          animation: hero-shimmer 6s ease-in-out infinite !important;
+        }
+      </style>
+
       <div class="mx-auto max-w-4xl text-center">
         <h1 class="font-serif text-7xl font-bold leading-[0.92] tracking-tight sm:text-8xl lg:text-9xl">
           <span
