@@ -4,11 +4,14 @@ import tailwindcss from "@tailwindcss/vite";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
+import cloudflare from "@astrojs/cloudflare";
+
 const site =
   process.env.SITE_URL || process.env.PUBLIC_SITE_URL || "https://yingwu.com";
 
 export default defineConfig({
   site,
+
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
@@ -21,8 +24,12 @@ export default defineConfig({
       wrap: false,
     },
   },
+
   integrations: [mdx()],
+
   vite: {
     plugins: [tailwindcss()],
   },
+
+  adapter: cloudflare(),
 });
