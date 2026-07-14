@@ -18,7 +18,36 @@ const { flush = false, scenery = false } = Astro.props;
           loading="lazy"
         />
       </picture>
-      <div class="absolute inset-0 bg-gradient-to-t from-background/95 via-background/70 to-background/40 dark:from-background/95 dark:via-background/70 dark:to-background/40" />
+      <div
+        class="absolute inset-0"
+        style="background: linear-gradient(
+          180deg,
+          rgba(249,249,248,0) 0%,
+          rgba(249,249,248,0.05) 15%,
+          rgba(249,249,248,0.15) 28%,
+          rgba(249,249,248,0.30) 40%,
+          rgba(249,249,248,0.50) 52%,
+          rgba(249,249,248,0.70) 64%,
+          rgba(249,249,248,0.85) 76%,
+          rgba(249,249,248,0.95) 88%,
+          rgba(249,249,248,1) 100%
+        )"
+      />
+      <div
+        class="absolute inset-0 hidden dark:block"
+        style="background: linear-gradient(
+          180deg,
+          rgba(14,14,13,0) 0%,
+          rgba(14,14,13,0.08) 15%,
+          rgba(14,14,13,0.18) 28%,
+          rgba(14,14,13,0.32) 40%,
+          rgba(14,14,13,0.50) 52%,
+          rgba(14,14,13,0.65) 64%,
+          rgba(14,14,13,0.78) 76%,
+          rgba(14,14,13,0.90) 88%,
+          rgba(14,14,13,1) 100%
+        )"
+      />
     </div>
   )}
 

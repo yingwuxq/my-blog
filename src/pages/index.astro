@@ -68,9 +68,9 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
           background-image: linear-gradient(135deg,
             rgba(255,255,255,1) 0%,
             rgba(255,255,255,1) 20%,
-            rgba(252,210,130,1) 40%,
-            rgba(255,255,255,1) 55%,
-            rgba(130,200,255,1) 75%,
+            rgba(255,180,200,1) 38%,
+            rgba(255,255,255,1) 52%,
+            rgba(160,220,160,1) 70%,
             rgba(255,255,255,1) 100%
           ) !important;
           animation: hero-shimmer 10s ease-in-out infinite !important;
@@ -121,7 +121,7 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
       </div>
       <article class="grid gap-10 lg:grid-cols-2">
         <a href={`/blog/${featured.slug}`} class="group block overflow-hidden rounded-md" aria-label={featured.title}>
-          <div class="aspect-[4/3] overflow-hidden rounded-md bg-muted sm:aspect-square">
+          <div class="aspect-[16/9] overflow-hidden rounded-md bg-muted">
             <picture>
               <source srcSet="/assets/light-hero.avif" media="(prefers-color-scheme: light)" />
               <img
