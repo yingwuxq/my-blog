@@ -5,7 +5,7 @@ const siteUrl = (
 ).replace(/\/$/, "");
 
 export const SITE = {
-  name: "Yingwu",
+  name: "Yingwu'Log",
   description: "记录深度学习、机器学习与工程实践的个人博客。",
   url: siteUrl,
   locale: "zh-CN",

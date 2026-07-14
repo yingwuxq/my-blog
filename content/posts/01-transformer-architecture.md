@@ -20,37 +20,7 @@ Transformer 架构由 Vaswani 等人于 2017 年在论文 **"Attention Is All Yo
 
 ## 整体架构（Encoder-Decoder）
 
-```mermaid
-graph TB
-    subgraph Encoder["Encoder (N×)"]
-        direction TB
-        IN1[Input Embedding] --> PE1[Positional Encoding]
-        PE1 --> MHA1[Multi-Head Self-Attention]
-        MHA1 --> AN1[Add & LayerNorm]
-        AN1 --> FFN1[Feed-Forward Network]
-        FFN1 --> AN2[Add & LayerNorm]
-        AN2 --> OUT1[Encoder Output]
-    end
-    
-    subgraph Decoder["Decoder (N×)"]
-        direction TB
-        IN2[Output Embedding] --> PE2[Positional Encoding]
-        PE2 --> MASK[Masked Multi-Head Self-Attention]
-        MASK --> AN3[Add & LayerNorm]
-        AN3 --> CA[Cross-Attention]
-        CA --> AN4[Add & LayerNorm]
-        AN4 --> FFN2[Feed-Forward Network]
-        FFN2 --> AN5[Add & LayerNorm]
-        AN5 --> OUT2[Decoder Output]
-    end
-    
-    OUT1 --> CA
-    
-    subgraph Output["输出层"]
-        OUT2 --> LIN[Linear Layer]
-        LIN --> SOFT[Softmax]
-    end
-```
+
 
 ### 数据流动过程
 
