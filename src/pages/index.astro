@@ -194,18 +194,6 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
 
 </BaseLayout>
 
-<style>
-  @keyframes hero-shimmer {
-    0%, 100% { background-position: 0% 50%; opacity: 1; }
-    50% { background-position: 100% 50%; opacity: 0.92; }
-  }
-
-  .hero-title {
-    background-size: 200% 200%;
-    animation: hero-shimmer 6s ease-in-out infinite;
-  }
-</style>
-
 <script>
   const latest = document.querySelector("[data-home-latest]");
   if (latest) {

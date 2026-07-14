@@ -155,6 +155,16 @@
 }
 
 @layer components {
+  @keyframes hero-shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .hero-title {
+    background-size: 200% 200% !important;
+    animation: hero-shimmer 6s ease-in-out infinite !important;
+  }
+
   .skip-link {
     position: fixed;
     left: 1rem;
@@ -336,6 +346,16 @@
     font-size: 0.9rem !important;
     line-height: 1.65 !important;
     overflow-x: auto !important;
+  }
+
+  /* Dark mode: override Astro-code background/color via CSS variables */
+  .dark & pre[class*="astro-code"] {
+    background-color: var(--shiki-dark-bg) !important;
+    color: var(--shiki-dark) !important;
+  }
+
+  .dark & pre[class*="astro-code"] span {
+    color: var(--shiki-dark) !important;
   }
 
   & pre code {
