@@ -1,6 +1,6 @@
 const siteUrl = (
-  import.meta.env.SITE_URL ||
-  import.meta.env.PUBLIC_SITE_URL ||
+  process.env.SITE_URL ||
+  import.meta.env?.PUBLIC_SITE_URL ||
   "https://yingwu.com"
 ).replace(/\/$/, "");
 
