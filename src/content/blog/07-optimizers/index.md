@@ -10,6 +10,8 @@ draft: false
 thumbnail: ./cover.webp
 ---
 
+> **Warning:** AdamW 的 weight decay 与学习率解耦，是 LLM 预训练的标准选择。不要使用 L2 正则化替代 weight decay。
+
 ## 概述
 
 优化器根据梯度更新模型参数，是训练的核心引擎。

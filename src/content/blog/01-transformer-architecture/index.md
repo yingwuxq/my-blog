@@ -10,6 +10,8 @@ draft: false
 thumbnail: ./cover.webp
 ---
 
+> **Note:** Transformer 的并行训练能力使其在大规模 NLP 任务中取代了 RNN。核心创新在于用自注意力替代循环连接。
+
 ## 概述
 
 Transformer 由 Vaswani 等人于 2017 年提出，完全基于注意力机制，摒弃了 RNN 的循环结构，实现了并行计算和长距离依赖捕获。

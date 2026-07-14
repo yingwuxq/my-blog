@@ -10,6 +10,10 @@ draft: false
 thumbnail: ./cover.webp
 ---
 
+> **Tip:** Pre-Norm（先归一化再子层）在现代 Transformer 中比 Post-Norm 更稳定，LLaMA、GPT 等模型均采用 Pre-Norm。
+
+> **Note:** RMS Norm 省去了均值计算，在保持效果的同时减少了计算量。
+
 ## 概述
 
 归一化将中间层激活值调整到合适尺度，防止梯度消失/爆炸，加速训练收敛。

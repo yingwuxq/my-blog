@@ -374,10 +374,16 @@ const jsonLd = {
     });
   });
 
-  /* Center display math (p containing only a .katex element) */
+  /* Center display math: only when p has ONLY a .katex element AND no text */
   document.querySelectorAll(".prose-article p").forEach(function(p) {
-    if (p.children.length === 1 && p.children[0].classList.contains("katex")) {
+    if (p.children.length === 1 && p.children[0].classList.contains("katex") && !p.textContent.trim()) {
       p.classList.add("is-display-math");
     }
+  });
+
+  /* Add callout styles to blockquotes with strong first-child */
+  document.querySelectorAll(".prose-article blockquote").forEach(function(bq) {
+    var s = bq.querySelector("strong");
+    if (s) bq.style.paddingTop = "0.5rem";
   });
 </script>
