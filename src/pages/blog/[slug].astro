@@ -5,6 +5,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
 import PostCard from "../../components/PostCard.astro";
+import Comments from "../../components/Comments.astro";
 import Icon from "../../components/Icon.astro";
 import {
   SITE,
@@ -228,11 +229,7 @@ const jsonLd = {
           }
         </nav>
 
-        <div class="mt-12 rounded-md border border-dashed border-border p-8 text-center">
-          <Icon name="message" class="mx-auto h-5 w-5 text-muted-foreground" />
-          <div class="mt-2 font-serif text-lg">Comments</div>
-          <p class="mt-1 text-sm text-muted-foreground">Hook this up to your favourite commenting platform &mdash; Giscus, Disqus, or your own.</p>
-        </div>
+        <Comments />
       </div>
 
       <aside class="hidden lg:block">
