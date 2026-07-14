@@ -28,6 +28,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          SITE_URL: https://yingwuxq.github.io/my-blog
       - name: Prefix all paths for GitHub Pages
         run: |
           # Fix HTML attribute values: ="/
