@@ -18,17 +18,17 @@ thumbnail: ./cover.webp
 
 ## SGD + Momentum
 
-$$ v_{t+1} = \beta v_t + \nabla \mathcal{L}(\theta_t) $
+$$ v_{t+1} = \beta v_t + \nabla \mathcal{L}(\theta_t) $$
 
-$ \theta_{t+1} = \theta_t - \eta v_{t+1} $$
+$$ \theta_{t+1} = \theta_t - \eta v_{t+1} $$
 
 动量累积历史梯度方向，加速收敛并抑制震荡。
 
 ## Adam
 
-$$ m_t = \beta_1 m_{t-1} + (1-\beta_1)g_t $
+$$ m_t = \beta_1 m_{t-1} + (1-\beta_1)g_t $$
 
-$ v_t = \beta_2 v_{t-1} + (1-\beta_2)g_t^2 $$
+$$ v_t = \beta_2 v_{t-1} + (1-\beta_2)g_t^2 $$
 
 自适应学习率，结合动量与 RMSProp 的优点，是 NLP 任务的首选。
 
