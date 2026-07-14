@@ -27,3 +27,6 @@ npm-cache/
 # Source assets (non-public)
 /assets/
 note/
+
+# Local only
+LOCAL_MANUAL.md
