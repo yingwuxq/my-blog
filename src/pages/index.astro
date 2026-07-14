@@ -122,15 +122,26 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
       <article class="grid gap-10 lg:grid-cols-2">
         <a href={`/blog/${featured.slug}`} class="group block overflow-hidden rounded-md" aria-label={featured.title}>
           <div class="aspect-[16/9] overflow-hidden rounded-md bg-muted">
-            <picture>
-              <source srcSet="/assets/light-hero.avif" media="(prefers-color-scheme: light)" />
-              <img
-                src="/assets/dark-hero.avif"
-                alt=""
-                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                loading="lazy"
-              />
-            </picture>
+            {
+              featured.thumbnail ? (
+                <img
+                  src={typeof featured.thumbnail === "string" ? featured.thumbnail : featured.thumbnail.src}
+                  alt=""
+                  class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+              ) : (
+                <picture>
+                  <source srcSet="/assets/light-hero.avif" media="(prefers-color-scheme: light)" />
+                  <img
+                    src="/assets/dark-hero.avif"
+                    alt=""
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
+                </picture>
+              )
+            }
           </div>
         </a>
         <div class="flex flex-col justify-center">
