@@ -28,23 +28,16 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-        env:
-          ASTRO_BASE: /my-blog
-      # Fix ALL paths for GitHub Pages sub-path
-      - name: Fix asset paths
+      - name: Prefix all paths for GitHub Pages
         run: |
-          find dist -type f \
-            \( -name "*.html" -o -name "*.css" -o -name "*.js" -o -name "*.xml" -o -name "*.json" \) \
+          # Fix HTML attribute values: ="/
+          find dist -type f \( -name "*.html" -o -name "*.js" \) \
+            -exec sed -i 's|="/\(my-blog/\)\?|="/my-blog/|g' {} +
+          # Fix CSS: url(/xxx) and ="/
+          find dist -type f -name "*.css" \
             -exec sed -i \
-              -e 's|="/assets/|="/my-blog/assets/|g' \
-              -e 's|="/_astro/|="/my-blog/_astro/|g' \
-              -e 's|="/fonts/|="/my-blog/fonts/|g' \
-              -e 's|="/avatars/|="/my-blog/avatars/|g' \
-              -e 's|="/favicon|="/my-blog/favicon|g' \
-              -e 's|="/robots|="/my-blog/robots|g' \
-              -e 's|="/sitemap|="/my-blog/sitemap|g' \
-              -e 's|="/rss|="/my-blog/rss|g' \
-              -e 's|="/search-index|="/my-blog/search-index|g' \
+              -e 's|="/\(my-blog/\)\?|="/my-blog/|g' \
+              -e 's|url(\(['"'"']\?\)/\(my-blog/\)\?|url(\1/my-blog/|g' \
               {} +
       - uses: actions/upload-pages-artifact@v3
         with:

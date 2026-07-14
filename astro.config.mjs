@@ -7,11 +7,8 @@ import rehypeKatex from "rehype-katex";
 const site =
   process.env.SITE_URL || process.env.PUBLIC_SITE_URL || "https://yingwu.com";
 
-const base = process.env.ASTRO_BASE || "";
-
 export default defineConfig({
   site,
-  base,
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
