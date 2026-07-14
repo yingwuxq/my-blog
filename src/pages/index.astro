@@ -239,7 +239,7 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
         if (match) visible += 1;
       });
       if (empty) empty.hidden = visible > 0;
-      buttons.forEach((button) => setActive(button, button.dataset.homeFilter || ""));
+      buttons.forEach((button) => setActive(button, button.dataset.homeFilter === category));
     };
 
     buttons.forEach((button) => {
