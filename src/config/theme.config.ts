@@ -21,9 +21,9 @@ export const NAVIGATION = [
 ];
 
 export const CONTACT = {
-  email: "",
-  socialHandle: "",
-  socialUrl: "",
+  email: "mayingwu0@gmail.com",
+  socialHandle: "Ma Yingwu",
+  socialUrl: "https://github.com/yingwuxq",
 };
 
 export const FORMS = {
@@ -44,7 +44,7 @@ export const SOCIAL_LINKS = [{ href: "/rss.xml", label: "RSS feed", icon: "rss" 
 export const authors = [
   {
     slug: "yingwu",
-    name: "Yingwu",
+    name: "Ma Yingwu",
     bio: "深度学习与机器学习研究者。",
     longBio: "记录深度学习、机器学习和工程实践的笔记与思考。",
     avatar: "/avatars/yingwu.svg",
