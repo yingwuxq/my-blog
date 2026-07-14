@@ -24,6 +24,10 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
   canonical="/"
   flushFooter
 >
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
   <section class="relative -mt-[68px] min-h-[calc(100svh-2rem)] overflow-hidden border-b border-border/60 pt-[68px] sm:min-h-[760px]">
     <picture>
       <source srcSet="/assets/light-hero.avif" media="(prefers-color-scheme: light)" />
@@ -78,7 +82,7 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
       </style>
 
       <div class="mx-auto max-w-4xl text-center">
-        <h1 class="font-serif text-7xl font-bold leading-[0.92] tracking-tight sm:text-8xl lg:text-9xl">
+        <h1 class="font-display text-7xl font-bold leading-[0.92] tracking-tight sm:text-8xl lg:text-9xl" style="font-family: 'DM Serif Display', serif;">
           <span
             class="hero-title bg-clip-text text-transparent"
             style="filter: drop-shadow(0 4px 30px rgba(0,0,0,0.35))"
@@ -217,8 +221,9 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
     </div>
 
     <div class="mt-12 text-center">
-      <a href="/blog" class="inline-flex items-center gap-2 rounded-md border border-border px-5 py-2.5 text-sm font-medium hover:bg-muted">
-        浏览全部 <Icon name="arrow-right" class="h-3.5 w-3.5" />
+      <a href="/blog" class="group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+        style="background: linear-gradient(135deg, var(--primary), var(--ring)); color: white; box-shadow: 0 4px 15px color-mix(in oklab, var(--primary) 30%, transparent);">
+        浏览全部 <Icon name="arrow-right" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
       </a>
     </div>
   </section>
