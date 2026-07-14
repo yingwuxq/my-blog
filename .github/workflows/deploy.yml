@@ -14,6 +14,9 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+env:
+  SITE_URL: https://yingwuxq.github.io/my-blog
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,8 +29,14 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          SITE_URL: https://yingwuxq.github.io/my-blog
-      - uses: actions/configure-pages@v4
+          ASTRO_BASE: /my-blog
+      # Fix asset paths for GitHub Pages sub-path
+      - run: |
+          find dist -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" -o -name "*.xml" \) \
+            -exec sed -i 's|="/assets/|="/my-blog/assets/|g' {} + \
+            -exec sed -i 's|="/_astro/|="/my-blog/_astro/|g' {} + \
+            -exec sed -i 's|="/fonts/|="/my-blog/fonts/|g' {} + \
+            -exec sed -i 's|="/avatars/|="/my-blog/avatars/|g' {} +
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
