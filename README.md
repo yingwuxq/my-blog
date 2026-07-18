@@ -45,6 +45,7 @@ tags: ["transformer", "attention"]
 author: "yingwu"
 featured: false
 draft: false
+thumbnail: ./cover.webp
 ---
 ```
 
@@ -99,7 +100,7 @@ thumbnail: ./cover.webp
 thumbnailAlt: "缩略图描述"
 ```
 
-如果未设置缩略图，文章卡片会自动使用首页英雄区的背景图作为默认封面。
+如果未设置缩略图，文章卡片会自动使用首页的背景图作为默认封面。
 
 建议缩略图尺寸：**1200×630px**（OG 标准比例）。
 
@@ -141,9 +142,3 @@ npm run preview      # 预览构建结果
 - **代码高亮**：\`\`\`python / \`\`\`js 等自动高亮，支持暗色模式
 - **表格**：标准 Markdown 表格
 - **任务列表**：`- [x]` 格式
-
----
-
-## 部署
-
-`git push` 到 `main` 分支后，GitHub Actions 自动构建并部署到 GitHub Pages。

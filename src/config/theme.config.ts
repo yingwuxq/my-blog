@@ -45,7 +45,7 @@ export const authors = [
   {
     slug: "yingwu",
     name: "Ma Yingwu",
-    bio: "深度学习与机器学习研究者。",
+    bio: "一名在 AI 世界里认真摸鱼、在 Agent 赛道上持续进修的人工智能专业大学生。",
     longBio: "记录深度学习、机器学习和工程实践的笔记与思考。",
     avatar: "/avatars/yingwu.svg",
   },
@@ -69,4 +69,6 @@ export const tags = [
   { slug: "optimizer", name: "Optimizer" },
   { slug: "regularization", name: "Regularization" },
   { slug: "initialization", name: "Initialization" },
+  { slug: "linear-algebra", name: "Linear Algebra" },
+  { slug: "mathematical-foundations", name: "Mathematical Foundations" },
 ];
