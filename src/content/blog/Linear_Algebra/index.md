@@ -8,13 +8,14 @@ author: "yingwu"
 featured: false
 draft: false
 thumbnail: ./cover.webp
+
 ---
 
-### 线性代数基础
+# 线性代数基础
 
-#### 向量和向量空间
+## 向量和向量空间
 
-##### 向量
+### 向量
 
 标量（Scalar）是一个实数，只有大小，没有方向. 标量一般用斜体小写英文字母表示. 向量（Vector）是由一组实数组成的有序数组，同时具有大小和方向. 一个 $N$ 维向量 $\mathbf{a}$ 可以写为
 $$
@@ -24,7 +25,7 @@ $$
 
 one-hot 向量为只有一个元素为 $1$、其余元素都为 $0$ 的向量. 
 
-##### 向量空间
+### 向量空间
 
 向量空间（Vector Space），也称线性空间（Linear Space），是指由向量组成并且对加法与数乘封闭的集合. 对向量空间 $\mathcal{V}$ 中的任意向量 $\mathbf{a},\mathbf{b}$ 和任意标量 $c$ ，至少需要满足：
 
@@ -69,13 +70,13 @@ a_M b_1 & a_M b_2 & \cdots & a_M b_N
 $$
 其中 $[\mathbf{a} \otimes \mathbf{b}]_{mn} = a_m b_n$.
 
-![PixPin_2026-07-18_12-57-02](E:\file\Projects\Test_Project\my_blog\src\content\blog\Linear_Algebra\index.assets\PixPin_2026-07-18_12-57-02.png)
+![PixPin_2026-07-18_12-57-02](./index.assets/PixPin_2026-07-18_12-57-02.png)
 
 （v1）是两个向量之间的点积，而（v2）将列乘以行并产生一个秩 $1$ 矩阵（若 $\mathbf{a}, \mathbf{b}$ 均非零），是两个向量的外积.
 
 如果向量空间中两个向量的内积为 $0$，则它们正交（Orthogonal）. 如果向量空间中一个向量 $\mathbf{v}$ 与子空间 $\mathcal{U}$ 中的每个向量都正交，那么向量 $\mathbf{v}$ 和子空间 $\mathcal{U}$ 正交.
 
-##### 范数
+### 范数
 
 范数（Norm）是一个表示向量“长度”的函数. 对于一个 $N$ 维向量 $\mathbf{v}$，一个常见的范数函数为 $\ell_p$ 范数：
 $$
@@ -100,13 +101,13 @@ $$
 \|\mathbf{v}\|_\infty = \max_{1 \leq n \leq N} |v_n|. \tag{10}
 $$
 
-![PixPin_2026-07-17_20-41-40](./index.assets\PixPin_2026-07-17_20-41-40.png)
+![PixPin_2026-07-17_20-41-40](./index.assets/PixPin_2026-07-17_20-41-40.png)
 
 图中给出了常见范数的示例，其中红线表示不同范数的 $\ell_p=1$ 的点.
 
-#### 矩阵
+## 矩阵
 
-##### 线性映射
+### 线性映射
 
 线性映射（Linear Mapping）是指从线性空间 $\mathcal{X}$ 到线性空间 $\mathcal{Y}$ 的一个映射函数 $f : \mathcal{X} \to \mathcal{Y}$，并满足：对于 $\mathcal{X}$ 中任何两个向量 $\mathbf{u}$ 和 $\mathbf{v}$ 以及任何标量 $c$，有
 $$
@@ -159,7 +160,7 @@ $$
 
 矩阵 $\mathbf{A} \in \mathbb{R}^{M \times N}$ 定义了一个从空间 $\mathbb{R}^N$ 到空间 $\mathbb{R}^M$ 的线性映射. 一个矩阵 $\mathbf{A}$ 从左上角数起的第 $m$ 行第 $n$ 列上的元素称为第 $m, n$ 项，通常记为 $[\mathbf{A}]_{mn}$ 或 $a_{mn}$.
 
-##### 仿射变换
+### 仿射变换
 
 仿射变换（Affine Transformation）是指通过一个线性变换和一个平移，将一个向量空间变换成另一个向量空间的过程. 
 
@@ -176,7 +177,7 @@ $$
 - 平行性不变：两条平行线变换后仍然平行；
 - 凸性不变：凸集（Convex Set）变换后仍为凸集.
 
-##### 矩阵操作
+### 矩阵操作
 
 若 $\mathbf{A}$ 和 $\mathbf{B}$ 都为 $M \times N$ 的矩阵，则它们的和也是 $M \times N$ 的矩阵，其每个元素是 $\mathbf{A}$ 和 $\mathbf{B}$ 对应元素之和，即
 $$
@@ -197,7 +198,7 @@ $$
 - 结合律：$ (\mathbf{A} \mathbf{B}) \mathbf{C} = \mathbf{A} (\mathbf{B} \mathbf{C})$；
 - 分配律：$(\mathbf{A} + \mathbf{B}) \mathbf{C} = \mathbf{A} \mathbf{C} + \mathbf{B} \mathbf{C}, \quad \mathbf{C} (\mathbf{A} + \mathbf{B}) = \mathbf{C} \mathbf{A} + \mathbf{C} \mathbf{B}$.
 
-![PixPin_2026-07-18_13-24-37](./index.assets\PixPin_2026-07-18_13-24-37.png)
+![PixPin_2026-07-18_13-24-37](./index.assets/PixPin_2026-07-18_13-24-37.png)
 
 图中展示了矩阵乘法的四种等价视角：
 
@@ -252,7 +253,7 @@ $$
 $$
 称为 Frobenius 范数，在机器学习中常用于参数正则化. 此外，矩阵的谱范数在稳定性与泛化分析中也很常见.
 
-##### 矩阵类型
+### 矩阵类型
 
 对称矩阵（Symmetric Matrix）指其转置等于自己的矩阵，即满足 $\mathbf{A} = \mathbf{A}^\top$.
 
@@ -294,7 +295,7 @@ $$
 $$
 则 $\mathbf{A}$ 为正交矩阵（Orthogonal Matrix）. 正交矩阵满足 $\mathbf{A}^\top \mathbf{A} = \mathbf{A} \mathbf{A}^\top = \mathbf{I}_N$，即正交矩阵的每一行（列）向量和自身的内积为 $1$，和其他行（列）向量的内积为 $0$.
 
-##### 特征值与特征向量
+### 特征值与特征向量
 
 对一个 $N \times N$ 的矩阵 $\mathbf{A}$，如果存在一个标量 $\lambda$ 和一个非零向量 $\mathbf{v}$ 满足
 $$
@@ -306,9 +307,9 @@ $$
 
 如果矩阵 $\mathbf{A}$ 是一个 $N \times N$ 的实对称矩阵，则存在实数 $\lambda_1, \cdots, \lambda_N$，以及 $N$ 个互相正交的单位向量 $\mathbf{v}_1, \cdots, \mathbf{v}_N$，使得 $\mathbf{v}_n$ 为矩阵 $\mathbf{A}$ 的特征值为 $\lambda_n$ 的特征向量（$1 \leq n \leq N$）.
 
-![PixPin_2026-07-18_14-44-04](./index.assets\PixPin_2026-07-18_14-44-04.png)
+![PixPin_2026-07-18_14-44-04](./index.assets/PixPin_2026-07-18_14-44-04.png)
 
-##### 矩阵分解
+### 矩阵分解
 
 **特征分解**：一个 $N \times N$ 的方块矩阵 $\mathbf{S}$ 的特征分解（Eigendecomposition）定义为
 $$
@@ -350,7 +351,7 @@ $$
 
 其中 $\mathbf{P}_1 = \mathbf{q}_1 \mathbf{q}_1^\top, \quad \mathbf{P}_2 = \mathbf{q}_2 \mathbf{q}_2^\top, \quad \mathbf{P}_3 = \mathbf{q}_3 \mathbf{q}_3^\top$.
 
-![PixPin_2026-07-18_14-57-12](./index.assets\PixPin_2026-07-18_14-57-12.png)
+![PixPin_2026-07-18_14-57-12](./index.assets/PixPin_2026-07-18_14-57-12.png)
 
 **奇异值分解**：一个 $M \times N$ 的矩阵 $\mathbf{A}$ 的奇异值分解（Singular Value Decomposition, SVD）定义为
 $$
@@ -383,6 +384,6 @@ $$
 \end{bmatrix}
 = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^\top + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^\top
 $$
-![PixPin_2026-07-18_15-05-53](./index.assets\PixPin_2026-07-18_15-05-53.png)
+![PixPin_2026-07-18_15-05-53](./index.assets/PixPin_2026-07-18_15-05-53.png)
 
 在实际应用中，通常使用奇异值分解来提高计算效率或构造低秩近似，但它只能近似重构原始矩阵. SVD 因而也常被用于降维、主成分分析（Principal Components Analysis，PCA）以及表示压缩. SVD 还可以拓展矩阵求逆到非方矩阵上.
