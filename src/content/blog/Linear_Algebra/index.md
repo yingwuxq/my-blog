@@ -100,7 +100,7 @@ $$
 \|\mathbf{v}\|_\infty = \max_{1 \leq n \leq N} |v_n|. \tag{10}
 $$
 
-![PixPin_2026-07-17_20-41-40](E:\file\Projects\Test_Project\my_blog\src\content\blog\Linear_Algebra\index.assets\PixPin_2026-07-17_20-41-40.png)
+![PixPin_2026-07-17_20-41-40](./index.assets\PixPin_2026-07-17_20-41-40.png)
 
 图中给出了常见范数的示例，其中红线表示不同范数的 $\ell_p=1$ 的点.
 
@@ -197,7 +197,7 @@ $$
 - 结合律：$ (\mathbf{A} \mathbf{B}) \mathbf{C} = \mathbf{A} (\mathbf{B} \mathbf{C})$；
 - 分配律：$(\mathbf{A} + \mathbf{B}) \mathbf{C} = \mathbf{A} \mathbf{C} + \mathbf{B} \mathbf{C}, \quad \mathbf{C} (\mathbf{A} + \mathbf{B}) = \mathbf{C} \mathbf{A} + \mathbf{C} \mathbf{B}$.
 
-![PixPin_2026-07-18_13-24-37](E:\file\Projects\Test_Project\my_blog\src\content\blog\Linear_Algebra\index.assets\PixPin_2026-07-18_13-24-37.png)
+![PixPin_2026-07-18_13-24-37](./index.assets\PixPin_2026-07-18_13-24-37.png)
 
 图中展示了矩阵乘法的四种等价视角：
 
@@ -306,7 +306,7 @@ $$
 
 如果矩阵 $\mathbf{A}$ 是一个 $N \times N$ 的实对称矩阵，则存在实数 $\lambda_1, \cdots, \lambda_N$，以及 $N$ 个互相正交的单位向量 $\mathbf{v}_1, \cdots, \mathbf{v}_N$，使得 $\mathbf{v}_n$ 为矩阵 $\mathbf{A}$ 的特征值为 $\lambda_n$ 的特征向量（$1 \leq n \leq N$）.
 
-![PixPin_2026-07-18_14-44-04](E:\file\Projects\Test_Project\my_blog\src\content\blog\Linear_Algebra\index.assets\PixPin_2026-07-18_14-44-04.png)
+![PixPin_2026-07-18_14-44-04](./index.assets\PixPin_2026-07-18_14-44-04.png)
 
 ##### 矩阵分解
 
@@ -350,7 +350,7 @@ $$
 
 其中 $\mathbf{P}_1 = \mathbf{q}_1 \mathbf{q}_1^\top, \quad \mathbf{P}_2 = \mathbf{q}_2 \mathbf{q}_2^\top, \quad \mathbf{P}_3 = \mathbf{q}_3 \mathbf{q}_3^\top$.
 
-![PixPin_2026-07-18_14-57-12](E:\file\Projects\Test_Project\my_blog\src\content\blog\Linear_Algebra\index.assets\PixPin_2026-07-18_14-57-12.png)
+![PixPin_2026-07-18_14-57-12](./index.assets\PixPin_2026-07-18_14-57-12.png)
 
 **奇异值分解**：一个 $M \times N$ 的矩阵 $\mathbf{A}$ 的奇异值分解（Singular Value Decomposition, SVD）定义为
 $$
@@ -383,6 +383,6 @@ $$
 \end{bmatrix}
 = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^\top + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^\top
 $$
-![PixPin_2026-07-18_15-05-53](E:\file\Projects\Test_Project\my_blog\src\content\blog\Linear_Algebra\index.assets\PixPin_2026-07-18_15-05-53.png)
+![PixPin_2026-07-18_15-05-53](./index.assets\PixPin_2026-07-18_15-05-53.png)
 
 在实际应用中，通常使用奇异值分解来提高计算效率或构造低秩近似，但它只能近似重构原始矩阵. SVD 因而也常被用于降维、主成分分析（Principal Components Analysis，PCA）以及表示压缩. SVD 还可以拓展矩阵求逆到非方矩阵上.
