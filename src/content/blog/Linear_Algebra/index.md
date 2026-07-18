@@ -8,7 +8,6 @@ author: "yingwu"
 featured: false
 draft: false
 thumbnail: ./cover.webp
-
 ---
 
 ## 向量和向量空间
