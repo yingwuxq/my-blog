@@ -29,13 +29,13 @@ const { items = [] } = Astro.props;
         </div>
       </div>
 
-      <!-- Text panel (independently centered) -->
+      <!-- Text panel (fixed width, slides with opacity) -->
       <div
         id="toc-panel"
-        class="absolute overflow-hidden rounded-xl border transition-all duration-300 ease-out"
-        style="border-color: var(--border); background: color-mix(in oklab, var(--background) 80%, transparent); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 4px 24px rgba(0,0,0,0.08); max-height: 0; opacity: 0; width: 0; right: 36px; top: 50%; transform: translateY(-50%); pointer-events: none;"
+        class="absolute overflow-hidden rounded-xl border"
+        style="border-color: var(--border); background: color-mix(in oklab, var(--background) 80%, transparent); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 4px 24px rgba(0,0,0,0.08); width: 180px; right: 40px; top: 50%; transform: translateY(-50%) translateX(12px); opacity: 0; pointer-events: none; transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);"
       >
-        <div class="max-h-[70vh] overflow-y-auto px-3 py-3" style="pointer-events: auto;">
+        <div class="max-h-[70vh] overflow-y-auto px-3 py-3">
           <div class="mb-2 text-[10px] font-medium uppercase tracking-[0.15em]" style="color: var(--muted-foreground);">
             On this page
           </div>
@@ -67,12 +67,14 @@ const { items = [] } = Astro.props;
 <style>
   #toc-bars-wrap {
     background: transparent;
+    transition: background 0.25s ease, backdrop-filter 0.25s ease, box-shadow 0.25s ease;
   }
 
   #toc-bars-wrap:hover {
-    background: color-mix(in oklab, var(--background) 60%, transparent);
+    background: color-mix(in oklab, var(--background) 55%, transparent);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
   }
 
   .toc-bar.is-active {
@@ -110,7 +112,6 @@ const { items = [] } = Astro.props;
     if (!toc || !barsWrap || !panel) return;
 
     var expanded = false;
-    var PANEL_WIDTH = 180;
 
     requestAnimationFrame(function() { toc.style.opacity = "1"; });
 
@@ -118,14 +119,12 @@ const { items = [] } = Astro.props;
       e.stopPropagation();
       expanded = !expanded;
       if (expanded) {
-        panel.style.maxHeight = "70vh";
         panel.style.opacity = "1";
-        panel.style.width = PANEL_WIDTH + "px";
+        panel.style.transform = "translateY(-50%) translateX(0)";
         panel.style.pointerEvents = "auto";
       } else {
-        panel.style.maxHeight = "0";
         panel.style.opacity = "0";
-        panel.style.width = "0";
+        panel.style.transform = "translateY(-50%) translateX(12px)";
         panel.style.pointerEvents = "none";
       }
     });
@@ -134,9 +133,8 @@ const { items = [] } = Astro.props;
       if (!expanded) return;
       if (toc.contains(e.target)) return;
       expanded = false;
-      panel.style.maxHeight = "0";
       panel.style.opacity = "0";
-      panel.style.width = "0";
+      panel.style.transform = "translateY(-50%) translateX(12px)";
       panel.style.pointerEvents = "none";
     });
 
