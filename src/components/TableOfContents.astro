@@ -6,61 +6,48 @@ const { items = [] } = Astro.props;
   items.length > 0 && (
     <div
       id="floating-toc"
-      class="fixed right-4 top-1/2 z-40 hidden -translate-y-1/2 rounded-xl border transition-all duration-300 ease-out lg:block"
-      style="border-color: var(--border); background: color-mix(in oklab, var(--background) 75%, transparent); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 4px 24px rgba(0,0,0,0.06); opacity: 0;"
+      class="fixed right-3 top-1/2 z-40 hidden -translate-y-1/2 cursor-pointer rounded-xl border transition-all duration-300 ease-out lg:block"
+      style="border-color: var(--border); background: color-mix(in oklab, var(--background) 75%, transparent); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 4px 24px rgba(0,0,0,0.06); opacity: 0; width: 28px;"
     >
-      <!-- Toggle button -->
-      <button
-        id="toc-toggle"
-        class="flex w-full items-center justify-center px-2 py-2.5 transition-colors hover:opacity-70"
-        style="color: var(--muted-foreground);"
-        aria-label="Toggle table of contents"
-      >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="4" y1="6" x2="20" y2="6" />
-          <line x1="4" y1="12" x2="20" y2="12" />
-          <line x1="4" y1="18" x2="20" y2="18" />
-        </svg>
-      </button>
-
-      <!-- Content (collapsible) -->
-      <div id="toc-content" class="overflow-hidden transition-all duration-300" style="max-height: 0; opacity: 0;">
-        <div class="border-t px-2 py-2" style="border-color: var(--border);">
-          <div class="mb-1.5 px-2 text-[10px] font-medium uppercase tracking-[0.15em]" style="color: var(--text-tertiary, var(--muted-foreground));">
-            On this page
-          </div>
-          <nav>
-            <ul class="space-y-[1px]">
-              {items.map((item) => (
-                <li>
-                  <a
-                    href={`#${item.id}`}
-                    data-toc-link={item.id}
-                    class="toc-item group flex items-center rounded-md px-2 py-1 text-xs leading-snug transition-all duration-200"
-                  >
-                    {item.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-      </div>
-
-      <!-- Bars (always visible, hidden when content is open) -->
-      <div id="toc-bars" class="flex flex-col items-center gap-2 px-3 py-3">
+      <!-- Collapsed: bars only -->
+      <div id="toc-bars" class="flex flex-col items-center gap-2.5 px-1.5 py-4">
         {items.map((item) => (
-          <a
-            href={`#${item.id}`}
-            data-toc-bar-link={item.id}
+          <span
+            data-toc-id={item.id}
             class="toc-bar block rounded-full transition-all duration-300"
             style={{
               height: "3px",
-              width: item.level === 2 ? "20px" : item.level === 3 ? "14px" : "10px",
+              width: item.level === 2 ? "16px" : item.level === 3 ? "11px" : "7px",
               background: "var(--border)",
             }}
-          ></a>
+          ></span>
         ))}
+      </div>
+
+      <!-- Expanded: text labels -->
+      <div id="toc-content" class="hidden px-3 py-3">
+        <div class="mb-2 text-[10px] font-medium uppercase tracking-[0.15em]" style="color: var(--muted-foreground);">
+          On this page
+        </div>
+        <nav>
+          <ul class="space-y-[2px]">
+            {items.map((item) => (
+              <li>
+                <a
+                  href={`#${item.id}`}
+                  data-toc-link={item.id}
+                  class="toc-item flex items-center rounded-md py-1 text-xs leading-snug transition-all duration-200"
+                  style={{
+                    paddingLeft: item.level === 3 ? "0.75rem" : item.level === 4 ? "1.25rem" : "0.25rem",
+                    color: "var(--muted-foreground)",
+                  }}
+                >
+                  {item.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </div>
   )
@@ -69,21 +56,17 @@ const { items = [] } = Astro.props;
 <style>
   .toc-bar.is-active {
     background: var(--color-primary) !important;
-    width: 24px !important;
+    width: 20px !important;
     height: 4px !important;
   }
 
-  .toc-item {
-    color: var(--color-muted-foreground);
-  }
-
   .toc-item:hover {
-    color: var(--color-foreground);
+    color: var(--color-foreground) !important;
     background: color-mix(in oklab, var(--color-muted) 50%, transparent);
   }
 
   .toc-item.is-active {
-    color: var(--color-foreground);
+    color: var(--color-foreground) !important;
     font-weight: 500;
   }
 
@@ -95,63 +78,56 @@ const { items = [] } = Astro.props;
     border-radius: 50%;
     margin-right: 6px;
     background: var(--color-primary);
+    flex-shrink: 0;
   }
 </style>
 
 <script>
   (function() {
     var toc = document.getElementById("floating-toc");
-    var toggle = document.getElementById("toc-toggle");
-    var content = document.getElementById("toc-content");
     var bars = document.getElementById("toc-bars");
+    var content = document.getElementById("toc-content");
 
-    if (!toc || !toggle || !content || !bars) return;
+    if (!toc || !bars || !content) return;
 
     var expanded = false;
 
-    // Show TOC
-    requestAnimationFrame(function() {
-      toc.style.opacity = "1";
+    requestAnimationFrame(function() { toc.style.opacity = "1"; });
+
+    // Click anywhere on TOC to expand
+    toc.addEventListener("click", function(e) {
+      if (expanded) return; // handled by document click
+      e.stopPropagation();
+      expanded = true;
+      toc.style.width = "180px";
+      bars.style.display = "none";
+      content.style.display = "block";
     });
 
-    // Toggle click
-    toggle.addEventListener("click", function() {
-      expanded = !expanded;
-      if (expanded) {
-        content.style.maxHeight = "400px";
-        content.style.opacity = "1";
-        bars.style.display = "none";
-      } else {
-        content.style.maxHeight = "0";
-        content.style.opacity = "0";
-        bars.style.display = "flex";
-      }
+    // Click anywhere else to collapse
+    document.addEventListener("click", function(e) {
+      if (!expanded) return;
+      if (toc.contains(e.target)) return;
+      expanded = false;
+      toc.style.width = "28px";
+      bars.style.display = "flex";
+      content.style.display = "none";
     });
 
-    // Scroll spy for bars mode
-    var barLinks = [...toc.querySelectorAll("[data-toc-bar-link]")];
-    var setActiveBar = function(id) {
-      barLinks.forEach(function(link) {
-        var match = link.getAttribute("data-toc-bar-link") === id;
-        link.classList.toggle("is-active", match);
-      });
-    };
-
-    // Scroll spy for text mode
+    // Scroll spy for bars
+    var barItems = [...toc.querySelectorAll("[data-toc-id]")];
     var textLinks = [...toc.querySelectorAll("[data-toc-link]")];
-    var setActiveText = function(id) {
-      textLinks.forEach(function(link) {
-        link.classList.toggle("is-active", link.getAttribute("data-toc-link") === id);
-      });
-    };
 
     var setActive = function(id) {
-      setActiveBar(id);
-      setActiveText(id);
+      barItems.forEach(function(el) {
+        el.classList.toggle("is-active", el.getAttribute("data-toc-id") === id);
+      });
+      textLinks.forEach(function(el) {
+        var match = el.getAttribute("data-toc-link") === id;
+        el.classList.toggle("is-active", match);
+      });
     };
 
-    // Observe headings
-    var allLinks = barLinks.concat(textLinks);
     var observer = new IntersectionObserver(
       function(entries) {
         var visible = entries.filter(function(e) { return e.isIntersecting; });
@@ -160,16 +136,21 @@ const { items = [] } = Astro.props;
       { rootMargin: "-80px 0px -70% 0px" }
     );
 
-    allLinks.forEach(function(link) {
-      var id = link.getAttribute("data-toc-link") || link.getAttribute("data-toc-bar-link");
+    barItems.forEach(function(el) {
+      var id = el.getAttribute("data-toc-id");
       var heading = id ? document.getElementById(id) : null;
       if (heading) observer.observe(heading);
-
-      link.addEventListener("click", function(e) {
-        e.preventDefault();
+      el.addEventListener("click", function(e) {
+        e.stopPropagation();
         var target = document.getElementById(id);
         if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
       });
+    });
+
+    textLinks.forEach(function(el) {
+      var id = el.getAttribute("data-toc-link");
+      var heading = id ? document.getElementById(id) : null;
+      if (heading) observer.observe(heading);
     });
 
     // Show/hide based on article visibility
