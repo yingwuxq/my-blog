@@ -10,8 +10,8 @@ const { items = [] } = Astro.props;
       style="opacity: 0;"
     >
       <!-- Main container -->
-      <div class="flex items-start gap-1">
-        <!-- Bars column (always visible when expanded, hover shows border) -->
+      <div class="flex items-start gap-1" style="flex-direction: row-reverse;">
+        <!-- Bars column (fixed position, right side) -->
         <div
           id="toc-bars-wrap"
           class="flex cursor-pointer flex-col items-center rounded-xl px-1.5 py-4 transition-all duration-300"
@@ -31,7 +31,7 @@ const { items = [] } = Astro.props;
           </div>
         </div>
 
-        <!-- Text panel (slides in) -->
+        <!-- Text panel (slides in from the right, to the left of bars) -->
         <div
           id="toc-panel"
           class="overflow-hidden rounded-xl border transition-all duration-300 ease-out"
@@ -92,8 +92,6 @@ const { items = [] } = Astro.props;
 
   .toc-bar.is-active {
     background: var(--color-primary) !important;
-    width: 20px !important;
-    height: 4px !important;
   }
 
   .toc-item:hover {
