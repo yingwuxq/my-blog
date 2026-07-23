@@ -161,7 +161,7 @@ const jsonLd = {
       )
     }
 
-    <div class="mt-12 grid gap-12 lg:grid-cols-[1fr_220px]">
+    <div class="mt-12">
       <div class="mx-auto w-full min-w-0 max-w-[720px]">
         <div class="prose-article">
           <Content />
@@ -232,11 +232,7 @@ const jsonLd = {
         <Comments />
       </div>
 
-      <aside class="hidden lg:block">
-        <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto">
-          <TableOfContents items={toc} />
-        </div>
-      </aside>
+      <TableOfContents items={toc} />
     </div>
 
     {

@@ -4,83 +4,131 @@ const { items = [] } = Astro.props;
 
 {
   items.length > 0 && (
-    <div data-toc>
-      <div class="mb-4 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
-        On this page
+    <div
+      id="floating-toc"
+      class="fixed right-6 top-1/2 z-40 hidden -translate-y-1/2 rounded-2xl border transition-all duration-500 ease-out lg:block"
+      style="border-color: var(--border); background: color-mix(in oklab, var(--background) 75%, transparent); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); opacity: 0; transform: translateY(-50%) translateX(20px);"
+    >
+      <div class="flex flex-col gap-3 px-3 py-4">
+        {items.map((item, i) => (
+          <a
+            href={`#${item.id}`}
+            data-toc-link={item.id}
+            class="group toc-item flex items-center justify-end transition-all duration-300"
+            style={{ paddingLeft: item.level === 3 ? "1.5rem" : "0" }}
+          >
+            <!-- Text label (hidden by default) -->
+            <span
+              class="toc-label mr-3 whitespace-nowrap text-xs font-medium transition-all duration-300"
+              style="color: var(--muted-foreground); opacity: 0; max-width: 0; overflow: hidden;"
+            >
+              {item.text}
+            </span>
+            <!-- Horizontal indicator bar -->
+            <span
+              class="toc-bar block shrink-0 rounded-full transition-all duration-300"
+              style="height: 3px; width: 20px; background: var(--border);"
+            ></span>
+          </a>
+        ))}
       </div>
-      <nav>
-        <ul class="space-y-[3px]">
-          {items.map((item) => (
-            <li>
-              <a
-                href={`#${item.id}`}
-                data-toc-link={item.id}
-                class="group relative block rounded-md px-3 py-1.5 text-sm leading-snug transition-all duration-200"
-                style={{ paddingLeft: item.level === 3 ? "1.5rem" : "0.75rem" }}
-              >
-                {item.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
     </div>
   )
 }
 
 <style>
-  [data-toc-link] {
-    color: var(--color-muted-foreground);
+  /* Active bar styling */
+  .toc-item.is-active .toc-bar {
+    background: var(--color-primary) !important;
+    width: 28px !important;
   }
 
-  [data-toc-link]:hover {
-    color: var(--color-foreground);
-    background: color-mix(in oklab, var(--color-muted) 50%, transparent);
+  /* Hover expand entire panel */
+  #floating-toc:hover {
+    transform: translateY(-50%) translateX(0) !important;
+    opacity: 1 !important;
   }
 
-  [data-toc-link].is-active {
-    color: var(--color-foreground);
-    background: color-mix(in oklab, var(--color-primary) 8%, transparent);
-    font-weight: 500;
+  #floating-toc:hover .toc-label {
+    opacity: 1 !important;
+    max-width: 200px !important;
   }
 
-  [data-toc-link].is-active::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 2px;
-    height: 16px;
-    border-radius: 1px;
-    background: var(--color-primary);
+  #floating-toc:hover .toc-bar {
+    width: 24px;
+  }
+
+  /* Individual item hover */
+  .toc-item:hover .toc-label {
+    color: var(--color-foreground) !important;
+  }
+
+  .toc-item:hover .toc-bar {
+    background: var(--color-foreground) !important;
+    width: 24px !important;
   }
 </style>
 
 <script>
-  const toc = document.querySelector("[data-toc]");
-  if (toc) {
-    const links = [...toc.querySelectorAll("[data-toc-link]")];
+  (function() {
+    var toc = document.getElementById("floating-toc");
+    if (!toc) return;
 
-    const setActive = (id) => {
-      links.forEach((link) => {
-        const match = link.getAttribute("data-toc-link") === id;
+    var links = [...toc.querySelectorAll("[data-toc-link]")];
+    var items = links.map(function(l) { return l; });
+
+    // Show TOC with animation on load
+    requestAnimationFrame(function() {
+      toc.style.opacity = "1";
+      toc.style.transform = "translateY(-50%) translateX(0)";
+    });
+
+    var setActive = function(id) {
+      items.forEach(function(link) {
+        var match = link.getAttribute("data-toc-link") === id;
         link.classList.toggle("is-active", match);
       });
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting);
+    var observer = new IntersectionObserver(
+      function(entries) {
+        var visible = entries.filter(function(e) { return e.isIntersecting; });
         if (visible.length > 0) setActive(visible[0].target.id);
       },
-      { rootMargin: "-80px 0px -70% 0px" },
+      { rootMargin: "-80px 0px -70% 0px" }
     );
 
-    links.forEach((link) => {
-      const id = link.getAttribute("data-toc-link");
-      const heading = id ? document.getElementById(id) : null;
+    items.forEach(function(link) {
+      var id = link.getAttribute("data-toc-link");
+      var heading = id ? document.getElementById(id) : null;
       if (heading) observer.observe(heading);
+
+      // Click to scroll
+      link.addEventListener("click", function(e) {
+        e.preventDefault();
+        var target = document.getElementById(id);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
     });
-  }
+
+    // Hide TOC when at top/bottom of article
+    var article = document.querySelector(".prose-article");
+    if (article) {
+      var updateVisibility = function() {
+        var rect = article.getBoundingClientRect();
+        var headerH = 100;
+        if (rect.bottom < headerH || rect.top > window.innerHeight) {
+          toc.style.opacity = "0";
+          toc.style.pointerEvents = "none";
+        } else {
+          toc.style.opacity = "1";
+          toc.style.pointerEvents = "auto";
+        }
+      };
+      window.addEventListener("scroll", updateVisibility, { passive: true });
+      updateVisibility();
+    }
+  })();
 </script>
