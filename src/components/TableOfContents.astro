@@ -9,58 +9,55 @@ const { items = [] } = Astro.props;
       class="fixed right-3 top-1/2 z-40 hidden -translate-y-1/2 lg:block"
       style="opacity: 0;"
     >
-      <!-- Main container -->
-      <div class="flex items-start gap-1" style="flex-direction: row-reverse;">
-        <!-- Bars column (fixed position, right side) -->
-        <div
-          id="toc-bars-wrap"
-          class="flex cursor-pointer flex-col items-center rounded-xl px-1.5 py-4 transition-all duration-300"
-        >
-          <div id="toc-bars" class="flex flex-col items-center gap-2.5">
-            {items.map((item) => (
-              <span
-                data-toc-id={item.id}
-                class="toc-bar block rounded-full transition-all duration-300"
-                style={{
-                  height: "3px",
-                  width: item.level === 2 ? "16px" : item.level === 3 ? "11px" : "7px",
-                  background: "var(--border)",
-                }}
-              ></span>
-            ))}
-          </div>
+      <!-- Bars column -->
+      <div
+        id="toc-bars-wrap"
+        class="flex cursor-pointer flex-col items-center rounded-xl px-1.5 py-4 transition-all duration-300"
+      >
+        <div id="toc-bars" class="flex flex-col items-center gap-2.5">
+          {items.map((item) => (
+            <span
+              data-toc-id={item.id}
+              class="toc-bar block rounded-full transition-all duration-300"
+              style={{
+                height: "3px",
+                width: item.level === 2 ? "16px" : item.level === 3 ? "11px" : "7px",
+                background: "var(--border)",
+              }}
+            ></span>
+          ))}
         </div>
+      </div>
 
-        <!-- Text panel (slides in from the right, to the left of bars) -->
-        <div
-          id="toc-panel"
-          class="overflow-hidden rounded-xl border transition-all duration-300 ease-out"
-          style="border-color: var(--border); background: color-mix(in oklab, var(--background) 80%, transparent); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 4px 24px rgba(0,0,0,0.08); max-height: 0; opacity: 0; width: 0;"
-        >
-          <div class="max-h-[70vh] overflow-y-auto px-3 py-3">
-            <div class="mb-2 text-[10px] font-medium uppercase tracking-[0.15em]" style="color: var(--muted-foreground);">
-              On this page
-            </div>
-            <nav>
-              <ul class="space-y-[2px]">
-                {items.map((item) => (
-                  <li>
-                    <a
-                      href={`#${item.id}`}
-                      data-toc-link={item.id}
-                      class="toc-item flex items-center rounded-md py-1 text-xs leading-snug transition-all duration-200"
-                      style={{
-                        paddingLeft: item.level === 3 ? "0.75rem" : item.level === 4 ? "1.25rem" : "0.25rem",
-                        color: "var(--muted-foreground)",
-                      }}
-                    >
-                      {item.text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+      <!-- Text panel (independently centered) -->
+      <div
+        id="toc-panel"
+        class="absolute overflow-hidden rounded-xl border transition-all duration-300 ease-out"
+        style="border-color: var(--border); background: color-mix(in oklab, var(--background) 80%, transparent); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 4px 24px rgba(0,0,0,0.08); max-height: 0; opacity: 0; width: 0; right: 36px; top: 50%; transform: translateY(-50%); pointer-events: none;"
+      >
+        <div class="max-h-[70vh] overflow-y-auto px-3 py-3" style="pointer-events: auto;">
+          <div class="mb-2 text-[10px] font-medium uppercase tracking-[0.15em]" style="color: var(--muted-foreground);">
+            On this page
           </div>
+          <nav>
+            <ul class="space-y-[2px]">
+              {items.map((item) => (
+                <li>
+                  <a
+                    href={`#${item.id}`}
+                    data-toc-link={item.id}
+                    class="toc-item flex items-center rounded-md py-1 text-xs leading-snug transition-all duration-200"
+                    style={{
+                      paddingLeft: item.level === 3 ? "0.75rem" : item.level === 4 ? "1.25rem" : "0.25rem",
+                      color: "var(--muted-foreground)",
+                    }}
+                  >
+                    {item.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
@@ -69,23 +66,11 @@ const { items = [] } = Astro.props;
 
 <style>
   #toc-bars-wrap {
-    border: 1px solid transparent;
     background: transparent;
-    box-shadow: none;
   }
 
   #toc-bars-wrap:hover {
-    border-color: var(--color-border);
     background: color-mix(in oklab, var(--background) 60%, transparent);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-
-  #toc-bars-wrap.is-active {
-    border-color: var(--color-border);
-    background: color-mix(in oklab, var(--background) 70%, transparent);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }
@@ -121,7 +106,6 @@ const { items = [] } = Astro.props;
     var toc = document.getElementById("floating-toc");
     var barsWrap = document.getElementById("toc-bars-wrap");
     var panel = document.getElementById("toc-panel");
-    var barsList = document.getElementById("toc-bars");
 
     if (!toc || !barsWrap || !panel) return;
 
@@ -130,34 +114,32 @@ const { items = [] } = Astro.props;
 
     requestAnimationFrame(function() { toc.style.opacity = "1"; });
 
-    // Click bars to toggle
     barsWrap.addEventListener("click", function(e) {
       e.stopPropagation();
       expanded = !expanded;
-      barsWrap.classList.toggle("is-active", expanded);
       if (expanded) {
         panel.style.maxHeight = "70vh";
         panel.style.opacity = "1";
         panel.style.width = PANEL_WIDTH + "px";
+        panel.style.pointerEvents = "auto";
       } else {
         panel.style.maxHeight = "0";
         panel.style.opacity = "0";
         panel.style.width = "0";
+        panel.style.pointerEvents = "none";
       }
     });
 
-    // Click outside to close
     document.addEventListener("click", function(e) {
       if (!expanded) return;
       if (toc.contains(e.target)) return;
       expanded = false;
-      barsWrap.classList.remove("is-active");
       panel.style.maxHeight = "0";
       panel.style.opacity = "0";
       panel.style.width = "0";
+      panel.style.pointerEvents = "none";
     });
 
-    // Scroll spy
     var barItems = [...toc.querySelectorAll("[data-toc-id]")];
     var textLinks = [...toc.querySelectorAll("[data-toc-link]")];
 
@@ -184,7 +166,6 @@ const { items = [] } = Astro.props;
       if (heading) observer.observe(heading);
     });
 
-    // Text links: scroll to heading (only in expanded mode)
     textLinks.forEach(function(el) {
       var id = el.getAttribute("data-toc-link");
       var heading = id ? document.getElementById(id) : null;
@@ -196,7 +177,6 @@ const { items = [] } = Astro.props;
       });
     });
 
-    // Show/hide based on article visibility
     var article = document.querySelector(".prose-article");
     if (article) {
       var updateVis = function() {
