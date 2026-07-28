@@ -2,7 +2,7 @@
 title: "Vision Transformer"
 excerpt: "告别卷积的“局域视野”，ViT 用 Transformer 的全局注意力，重塑计算机视觉的底层逻辑"
 date: 2026-07-28
-category: "compute-vision"
+category: "computer-vision"
 tags: ["transformer", "deep-learning", "vision-transformer"]
 author: "yingwu"
 featured: false

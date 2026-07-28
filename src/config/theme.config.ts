@@ -56,7 +56,7 @@ export const categories = [
   { slug: "machine-learning", name: "机器学习" },
   { slug: "engineering", name: "工程实践" },
   { slug: "math", name: "数学基础" },
-  { slug: "compute-vision", name: "CV" },
+  { slug: "computer-vision", name: "CV" },
 ];
 
 export const tags = [
