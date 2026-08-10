@@ -54,7 +54,6 @@ export const authors = [
 export const categories = [
   { slug: "deep-learning", name: "深度学习" },
   { slug: "machine-learning", name: "机器学习" },
-  { slug: "engineering", name: "工程实践" },
   { slug: "math", name: "数学基础" },
   { slug: "computer-vision", name: "CV" },
   { slug: "paper-reading", name: "论文阅读"}
@@ -64,13 +63,6 @@ export const tags = [
   { slug: "transformer", name: "Transformer" },
   { slug: "attention", name: "Attention" },
   { slug: "deep-learning", name: "Deep Learning" },
-  { slug: "position-encoding", name: "Position Encoding" },
-  { slug: "normalization", name: "Normalization" },
-  { slug: "activation", name: "Activation" },
-  { slug: "loss-function", name: "Loss Function" },
-  { slug: "optimizer", name: "Optimizer" },
-  { slug: "regularization", name: "Regularization" },
-  { slug: "initialization", name: "Initialization" },
   { slug: "linear-algebra", name: "Linear Algebra" },
   { slug: "mathematical-foundations", name: "Mathematical Foundations" },
   { slug: "vision-transformer", name: "Vision Transformer" },
