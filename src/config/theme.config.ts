@@ -57,6 +57,7 @@ export const categories = [
   { slug: "engineering", name: "工程实践" },
   { slug: "math", name: "数学基础" },
   { slug: "computer-vision", name: "CV" },
+  { slug: "paper-reading", name: "论文阅读"}
 ];
 
 export const tags = [
@@ -73,4 +74,12 @@ export const tags = [
   { slug: "linear-algebra", name: "Linear Algebra" },
   { slug: "mathematical-foundations", name: "Mathematical Foundations" },
   { slug: "vision-transformer", name: "Vision Transformer" },
+  { slug: "reinforcement-learning", name: "Reinforcement Learning" },
+  { slug: "machine-learning", name: "Machine Learning" },
+  { slug: "rlhf", name: "RLHF" },
+  { slug: "llm", name: "Large Language Model" },
+  { slug: "grpo", name: "GRPO" },
+  { slug: "dapo", name: "DAPO" },
+  { slug: "deepseek-r1", name: "DeepSeek-R1" },
+  { slug: "deepseekmath", name: "DeepSeekMath" },
 ];
