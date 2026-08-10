@@ -1,7 +1,7 @@
 ---
 title: "强化学习相关"
 excerpt: "马尔可夫决策过程是理解序列决策的核心，RLHF 则将其拓展至大语言模型的对齐训练"
-date: 2026-08-10
+date: 2026-08-02
 category: "machine-learning"
 tags: ["machine-learning", "reinforcement-learning", "rlhf", "llm"]
 author: "yingwu"

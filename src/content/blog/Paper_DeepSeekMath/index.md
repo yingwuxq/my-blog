@@ -1,7 +1,7 @@
 ---
 title: "DeepSeekMath：GRPO 开启 LLM 数学推理新范式"
 excerpt: "从 Common Crawl 构建 120B 数学语料库，GRPO 移除价值模型实现高效强化学习"
-date: 2026-08-10
+date: 2026-08-05
 category: "paper-reading"
 tags: ["reinforcement-learning", "grpo", "deepseekmath", "llm"]
 author: "yingwu"

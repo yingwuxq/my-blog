@@ -1,7 +1,7 @@
 ---
 title: "DeepSeek-R1：纯强化学习激发的 LLM 推理能力"
 excerpt: "无需监督微调，基于规则的 GRPO 让模型自发涌现自我反思与动态策略调整能力"
-date: 2026-08-10
+date: 2026-08-07
 category: "paper-reading"
 tags: ["reinforcement-learning", "rlhf", "grpo", "deepseek-r1", "llm"]
 author: "yingwu"
