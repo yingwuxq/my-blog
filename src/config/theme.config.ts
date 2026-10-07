@@ -75,4 +75,6 @@ export const tags = [
   { slug: "deepseek-r1", name: "DeepSeek-R1" },
   { slug: "deepseekmath", name: "DeepSeekMath" },
   { slug: "probability", name: "Probability" },
+  { slug: "vision-language", name: "Vision Language" },
+  { slug: "multimodal-model", name: "Multimodal Model" },
 ];
