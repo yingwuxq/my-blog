@@ -7,7 +7,7 @@ tags: ["vision-language", "multimodal-model"]
 author: "yingwu"
 featured: false
 draft: false
-thumbnail: ./cover.webp
+thumbnail: ./cover.pdf
 ---
 
 ## Overview
