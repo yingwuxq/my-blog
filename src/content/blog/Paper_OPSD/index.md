@@ -68,7 +68,6 @@ $$
 $$
 再求和时逐项截断：
 $$
-
 D^{(f)}_{\text{clip}}(p_T\|p_S)=\frac{1}{|\hat y|}\sum_{n=1}^{|\hat y|}\sum_{v\in\mathcal{V}}\min\!\left(\ell^{(f)}_{n,v},\ \tau\right)
 $$
 ![PixPin_2026-10-07_19-23-49](./OPSD.assets/PixPin_2026-10-07_19-23-49.png)
@@ -218,7 +217,7 @@ $$
 
 论文用一个裁判模型（judge）——Claude-4.5-Haiku——来判定 "模型是不是犯了感知错误"，并把感知错误分成 5 类. 这个 5 类分类法定义在裁判提示词（judge prompt）里：
 
-![PixPin_2026-10-07_19-40-27](./OPSD.assets/PixPin_2026-10-07_19-40-27.png)
+![PixPin_2026-10-07_20-11-47](./OPSD.assets/PixPin_2026-10-07_20-11-47.png)
 
 ## Seeing Before Reasoning: Decoupling Perception and Reasoning for Shortcut-Resilient Multimodal On-Policy Self-Distillation
 
