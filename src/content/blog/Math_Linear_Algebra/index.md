@@ -1,6 +1,6 @@
 ---
 title: "线性代数基础"
-excerpt: "是理解特征表示、神经网络线性层与梯度传播的基础"
+excerpt: "是理解不确定性建模、贝叶斯推断与生成模型的理论基石"
 date: 2026-07-18
 category: "math"
 tags: ["linear-algebra", "mathematical-foundations"]

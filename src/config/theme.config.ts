@@ -74,4 +74,5 @@ export const tags = [
   { slug: "dapo", name: "DAPO" },
   { slug: "deepseek-r1", name: "DeepSeek-R1" },
   { slug: "deepseekmath", name: "DeepSeekMath" },
+  { slug: "probability", name: "Probability" },
 ];
