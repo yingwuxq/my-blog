@@ -35,7 +35,7 @@ $$
 
 常见的离散随机变量的概率分布有伯努利分布和二项分布.
 
-在一次试验中，事件 $A$ 出现的概率为 $\mu$，不出现的概率为 $1 - \mu$。若用变量 $X$ 表示事件 $A$ 出现的次数，则 $X$ 的取值为 0 和 1，其相应的分布为
+在一次试验中，事件 $A$ 出现的概率为 $\mu$，不出现的概率为 $1 - \mu$. 若用变量 $X$ 表示事件 $A$ 出现的次数，则 $X$ 的取值为 0 和 1，其相应的分布为
 $$
 p(x) = \mu^x (1 - \mu)^{1-x} \tag{4}
 $$
@@ -85,7 +85,7 @@ $$
 $$
 p(x) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right) \tag{9}
 $$
-其中 $\sigma > 0$，$\mu$ 和 $\sigma$ 均为常数。若随机变量 $X$ 服从一个参数为 $\mu$ 和 $\sigma$ 的概率分布，简记为
+其中 $\sigma > 0$，$\mu$ 和 $\sigma$ 均为常数. 若随机变量 $X$ 服从一个参数为 $\mu$ 和 $\sigma$ 的概率分布，简记为
 $$
 X \sim \mathcal{N}(\mu, \sigma^2) \tag{10}
 $$
@@ -177,7 +177,7 @@ $$
 
 ![PixPin_2026-10-06_21-21-07](./Probability.assets/PixPin_2026-10-06_21-21-07.png)
 
-三分量狄利克雷分布在二维单纯形上的概率密度。不同参数向量改变密度峰的位置和分布形状。
+三分量狄利克雷分布在二维单纯形上的概率密度. 不同参数向量改变密度峰的位置和分布形状.
 
 ### 边际分布
 
@@ -289,7 +289,7 @@ $$
 $$
 \text{cov}(X, Y) = \mathbb{E} \left[ \left( X - \mathbb{E}[X] \right) \left( Y - \mathbb{E}[Y] \right) \right] \tag{37}
 $$
-协方差经常也用来衡量两个随机变量之间的线性相关性. 如果两个随机变量的协方差为 $0$，那么称这两个随机变量是线性不相关. 两个随机变量之间没有线性相关性，并非表示它们之间是独立的，可能存在某种非线性的函数关系. 反之，如果 $X$ 与 $Y$ 是统计独立的，那么它们之间的协方差一定为 $0$。
+协方差经常也用来衡量两个随机变量之间的线性相关性. 如果两个随机变量的协方差为 $0$，那么称这两个随机变量是线性不相关. 两个随机变量之间没有线性相关性，并非表示它们之间是独立的，可能存在某种非线性的函数关系. 反之，如果 $X$ 与 $Y$ 是统计独立的，那么它们之间的协方差一定为 $0$.
 
 ![PixPin_2026-10-06_21-23-33](./Probability.assets/PixPin_2026-10-06_21-23-33.png)
 
@@ -299,43 +299,43 @@ $$
 \text{cov}(\mathbf{X}, \mathbf{Y}) = \mathbb{E} \left[ \left( \mathbf{X} - \mathbb{E}[\mathbf{X}] \right) \left( \mathbf{Y} - \mathbb{E}[\mathbf{Y}] \right)^\top \right] \tag{38}
 $$
 
-协方差矩阵 $\text{cov}(\mathbf{X}, \mathbf{Y})$ 的第 $(m, n)$ 个元素等于随机变量 $X_m$ 和 $Y_n$ 的协方差。两个随机向量的协方差 $\text{cov}(\mathbf{X}, \mathbf{Y})$ 与 $\text{cov}(\mathbf{Y}, \mathbf{X})$ 互为转置关系。
+协方差矩阵 $\text{cov}(\mathbf{X}, \mathbf{Y})$ 的第 $(m, n)$ 个元素等于随机变量 $X_m$ 和 $Y_n$ 的协方差. 两个随机向量的协方差 $\text{cov}(\mathbf{X}, \mathbf{Y})$ 与 $\text{cov}(\mathbf{Y}, \mathbf{X})$ 互为转置关系.
 
-如果单个随机向量的协方差矩阵为对角矩阵，则说明其各维随机变量两两不相关；这并不必然意味着它们彼此独立。若进一步假设该随机向量服从多元高斯分布，则两两不相关可推出独立。
+如果单个随机向量的协方差矩阵为对角矩阵，则说明其各维随机变量两两不相关；这并不必然意味着它们彼此独立. 若进一步假设该随机向量服从多元高斯分布，则两两不相关可推出独立.
 
 ## 随机过程
 
-随机过程（Stochastic Process）是一组随机变量 $\{X_t\}$ 的集合，索引 $t$ 来自集合 $\mathcal{T}$。$\mathcal{T}$ 可定义在时间域或空间域，通常取时间域，以实数或正整数表示；$t$ 为实数时称为连续随机过程，为整数时称为离散随机过程。股价波动、语音信号、身高变化等都可看作随机过程。与时间相关的常见随机过程包括伯努利过程、随机游走（Random Walk）、马尔可夫过程等；与空间相关的随机过程通常称为随机场（Random Field），例如二维图像，每个像素由空间位置索引，整张图就构成一个随机场。
+随机过程（Stochastic Process）是一组随机变量 $\{X_t\}$ 的集合，索引 $t$ 来自集合 $\mathcal{T}$. $\mathcal{T}$ 可定义在时间域或空间域，通常取时间域，以实数或正整数表示；$t$ 为实数时称为连续随机过程，为整数时称为离散随机过程. 股价波动、语音信号、身高变化等都可看作随机过程. 与时间相关的常见随机过程包括伯努利过程、随机游走（Random Walk）、马尔可夫过程等；与空间相关的随机过程通常称为随机场（Random Field），例如二维图像，每个像素由空间位置索引，整张图就构成一个随机场.
 
 ### 马尔可夫过程
 
-在随机过程中，马尔可夫性质（Markov Property）是指一个随机过程在给定现在状态及所有过去状态情况下，其未来状态的条件概率分布仅依赖于当前状态。以离散随机过程为例，假设随机变量 $X_0, X_1, \cdots, X_T$ 构成一个随机过程。这些随机变量的所有可能取值的集合被称为状态空间（State Space）。如果 $X_{t+1}$ 对于过去状态的条件概率分布仅是 $X_t$ 的一个函数，则
+在随机过程中，马尔可夫性质（Markov Property）是指一个随机过程在给定现在状态及所有过去状态情况下，其未来状态的条件概率分布仅依赖于当前状态. 以离散随机过程为例，假设随机变量 $X_0, X_1, \cdots, X_T$ 构成一个随机过程. 这些随机变量的所有可能取值的集合被称为状态空间（State Space）. 如果 $X_{t+1}$ 对于过去状态的条件概率分布仅是 $X_t$ 的一个函数，则
 $$
 P(X_{t+1} = x_{t+1} \mid X_{0:t} = x_{0:t}) = P(X_{t+1} = x_{t+1} \mid X_t = x_t) \tag{39}
 $$
-其中 $X_{0:t}$ 表示变量集合 $X_0, X_1, \cdots, X_t$，$x_{0:t}$ 为在状态空间中的状态序列。
+其中 $X_{0:t}$ 表示变量集合 $X_0, X_1, \cdots, X_t$，$x_{0:t}$ 为在状态空间中的状态序列.
 
-马尔可夫性质也可以描述为给定当前状态时，将来的状态与过去状态是条件独立的。
+马尔可夫性质也可以描述为给定当前状态时，将来的状态与过去状态是条件独立的.
 
 #### 马尔可夫链
 
-离散时间的马尔可夫过程也称为**马尔可夫链**（Markov Chain）。如果一个马尔可夫链的条件概率
+离散时间的马尔可夫过程也称为**马尔可夫链**（Markov Chain）. 如果一个马尔可夫链的条件概率
 $$
 P(X_{t+1} = s \mid X_t = s') = m_{ss'} \tag{40}
 $$
-只和状态 $s$ 和 $s'$ 相关，和时间 $t$ 无关，则称为时间同质的马尔可夫链（Time-Homogeneous Markov Chain），其中 $m_{ss'}$ 称为状态转移概率。如果状态空间大小 $K$ 是有限的，状态转移概率可以用一个矩阵 $\mathbf{M} \in \mathbb{R}^{K \times K}$ 表示，称为状态转移矩阵（Transition Matrix），其中元素 $m_{ij} = P(X_{t+1} = s_i \mid X_t = s_j)$ 表示从状态 $s_j$ 转移到状态 $s_i$ 的概率。于是每一列之和为 $1$。
+只和状态 $s$ 和 $s'$ 相关，和时间 $t$ 无关，则称为时间同质的马尔可夫链（Time-Homogeneous Markov Chain），其中 $m_{ss'}$ 称为状态转移概率. 如果状态空间大小 $K$ 是有限的，状态转移概率可以用一个矩阵 $\mathbf{M} \in \mathbb{R}^{K \times K}$ 表示，称为状态转移矩阵（Transition Matrix），其中元素 $m_{ij} = P(X_{t+1} = s_i \mid X_t = s_j)$ 表示从状态 $s_j$ 转移到状态 $s_i$ 的概率. 于是每一列之和为 $1$.
 
 ![PixPin_2026-10-06_21-24-29](./Probability.assets/PixPin_2026-10-06_21-24-29.png)
 
-三状态马尔可夫链。箭头上的 $a_{ij}$ 表示从状态 $S_j$ 转移到 $S_i$ 的概率；每个状态所有出边的概率之和为 1。自环表示下一步仍处于当前状态。
+三状态马尔可夫链. 箭头上的 $a_{ij}$ 表示从状态 $S_j$ 转移到 $S_i$ 的概率；每个状态所有出边的概率之和为 $1$. 自环表示下一步仍处于当前状态.
 
-假设状态空间大小为 $K$，向量 $\boldsymbol{\pi} = [\pi_1, \cdots, \pi_K]^\top$ 为状态空间中的一个分布，满足 $0 \leq \pi_k \leq 1$ 和 $\sum_{k=1}^K \pi_k = 1$。
+假设状态空间大小为 $K$，向量 $\boldsymbol{\pi} = [\pi_1, \cdots, \pi_K]^\top$ 为状态空间中的一个分布，满足 $0 \leq \pi_k \leq 1$ 和 $\sum_{k=1}^K \pi_k = 1$.
 
 对于状态转移矩阵为 $\mathbf{M}$ 的时间同质的马尔可夫链，若存在一个分布 $\boldsymbol{\pi}$ 满足
 $$
 \boldsymbol{\pi} = \mathbf{M} \boldsymbol{\pi} \tag{41}
 $$
-则称分布 $\boldsymbol{\pi}$ 为该马尔可夫链的**平稳分布**（Stationary Distribution）。此时若 $t$ 时刻分布为 $\boldsymbol{\pi}$，则任意后续时刻仍保持为 $\boldsymbol{\pi}$。根据特征向量的定义可知，$\boldsymbol{\pi}$ 为矩阵 $\mathbf{M}$ 的（归一化的）对应特征值为 $1$ 的特征向量。
+则称分布 $\boldsymbol{\pi}$ 为该马尔可夫链的**平稳分布**（Stationary Distribution）. 此时若 $t$ 时刻分布为 $\boldsymbol{\pi}$，则任意后续时刻仍保持为 $\boldsymbol{\pi}$. 根据特征向量的定义可知，$\boldsymbol{\pi}$ 为矩阵 $\mathbf{M}$ 的（归一化的）对应特征值为 $1$ 的特征向量.
 
 若状态转移矩阵 $\mathbf{M}$ 满足**不可约**（所有状态互通）与**非周期**，则对任意初始分布 $\boldsymbol{\pi}^{(0)}$，链经过足够长时间的转移后都会收敛到平稳分布，即
 $$
@@ -346,21 +346,21 @@ $$
 > $$
 > \pi_j m_{ij} = \pi_i m_{ji}, \quad \forall 1 \leq i, j \leq K \tag{43}
 > $$
-> 则 $\boldsymbol{\pi}$ 是该马尔可夫链的一个平稳分布。若再结合不可约、非周期等条件，还可以进一步推出链从任意初始分布收敛到 $\boldsymbol{\pi}$。
+> 则 $\boldsymbol{\pi}$ 是该马尔可夫链的一个平稳分布. 若再结合不可约、非周期等条件，还可以进一步推出链从任意初始分布收敛到 $\boldsymbol{\pi}$.
 >
-> 细致平稳条件只是马尔可夫链收敛的充分条件，不是必要条件。细致平稳条件保证了从状态 $i$ 转移到状态 $j$ 的数量和从状态 $j$ 转移到状态 $i$ 的数量相一致，互相抵消，所以数量不发生改变。
+> 细致平稳条件只是马尔可夫链收敛的充分条件，不是必要条件. 细致平稳条件保证了从状态 $i$ 转移到状态 $j$ 的数量和从状态 $j$ 转移到状态 $i$ 的数量相一致，互相抵消，所以数量不发生改变.
 
 ### 高斯过程
 
-高斯过程（Gaussian Process）也是一种应用广泛的随机过程模型。假设有一组连续随机变量 $X_0, X_1, \cdots, X_T$，如果由这组随机变量构成的任一有限集合
+高斯过程（Gaussian Process）也是一种应用广泛的随机过程模型. 假设有一组连续随机变量 $X_0, X_1, \cdots, X_T$，如果由这组随机变量构成的任一有限集合
 $$
 X_{t_1, \cdots, t_N} = [X_{t_1}, \cdots, X_{t_N}]^\top, \quad 1 \leq N \leq T
 $$
-都服从一个多元正态分布，那么这组随机变量为一个高斯过程。高斯过程也可以定义为：如果 $X_{t_1, \cdots, t_N}$ 的任一线性组合都服从一元正态分布，那么这组随机变量为一个高斯过程。
+都服从一个多元正态分布，那么这组随机变量为一个高斯过程. 高斯过程也可以定义为：如果 $X_{t_1, \cdots, t_N}$ 的任一线性组合都服从一元正态分布，那么这组随机变量为一个高斯过程.
 
-高斯过程回归（Gaussian Process Regression）是利用高斯过程来对一个函数分布进行建模。和机器学习中参数化建模（比如贝叶斯线性回归）相比，高斯过程是一种非参数模型，可以拟合一个黑盒函数，并给出拟合结果的置信度。
+高斯过程回归（Gaussian Process Regression）是利用高斯过程来对一个函数分布进行建模. 和机器学习中参数化建模（比如贝叶斯线性回归）相比，高斯过程是一种非参数模型，可以拟合一个黑盒函数，并给出拟合结果的置信度.
 
-假设一个未知函数 $f(x)$ 服从高斯过程，且为平滑函数。如果两个样本 $x_1, x_2$ 比较接近，那么对应的 $f(x_1), f(x_2)$ 也比较接近。假设从函数 $f(x)$ 中采样有限个样本 $\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N]$，这 $N$ 个点服从一个多元正态分布，
+假设一个未知函数 $f(x)$ 服从高斯过程，且为平滑函数. 如果两个样本 $x_1, x_2$ 比较接近，那么对应的 $f(x_1), f(x_2)$ 也比较接近. 假设从函数 $f(x)$ 中采样有限个样本 $\mathbf{X} = [\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_N]$，这 $N$ 个点服从一个多元正态分布，
 $$
 [f(\mathbf{x}_1), f(\mathbf{x}_2), \cdots, f(\mathbf{x}_N)]^\top \sim \mathcal{N}\left( \boldsymbol{\mu}(\mathbf{X}), \mathbf{K}(\mathbf{X}, \mathbf{X}) \right) \tag{44}
 $$
@@ -368,21 +368,21 @@ $$
 $$
 \boldsymbol{\mu}(\mathbf{X}) = [\mu(\mathbf{x}_1), \mu(\mathbf{x}_2), \cdots, \mu(\mathbf{x}_N)]^\top, \quad \mathbf{K}(\mathbf{X}, \mathbf{X}) = [k(\mathbf{x}_i, \mathbf{x}_j)]_{N \times N}.
 $$
-$\boldsymbol{\mu}(\mathbf{X})$ 是均值向量，$\mathbf{K}(\mathbf{X}, \mathbf{X})$ 是协方差矩阵。$k(\mathbf{x}_i, \mathbf{x}_j)$ 为核函数，用于刻画两个样本之间的相关性。
+$\boldsymbol{\mu}(\mathbf{X})$ 是均值向量，$\mathbf{K}(\mathbf{X}, \mathbf{X})$ 是协方差矩阵. $k(\mathbf{x}_i, \mathbf{x}_j)$ 为核函数，用于刻画两个样本之间的相关性.
 
 在高斯过程回归中，一个常用的核函数是**平方指数**（Squared Exponential）核函数：
 $$
 k(\mathbf{x}_i, \mathbf{x}_j) = \exp \left( \frac{-\|\mathbf{x}_i - \mathbf{x}_j\|^2}{2l^2} \right) \tag{45}
 $$
-其中 $l$ 为超参数。当 $\mathbf{x}_i$ 和 $\mathbf{x}_j$ 越接近，其函数值越大，表明 $f(\mathbf{x}_i)$ 和 $f(\mathbf{x}_j)$ 越相关。
+其中 $l$ 为超参数. 当 $\mathbf{x}_i$ 和 $\mathbf{x}_j$ 越接近，其函数值越大，表明 $f(\mathbf{x}_i)$ 和 $f(\mathbf{x}_j)$ 越相关.
 
-假设 $f(\mathbf{x})$ 的一组带噪声观测值为 $\{(\mathbf{x}_n, y_n)\}_{n=1}^N$。可写作 $y_n = f(\mathbf{x}_n) + \epsilon_n$，其中 $\epsilon_n \sim \mathcal{N}(0, \sigma^2)$，$\sigma^2$ 为观测噪声方差。
+假设 $f(\mathbf{x})$ 的一组带噪声观测值为 $\{(\mathbf{x}_n, y_n)\}_{n=1}^N$. 可写作 $y_n = f(\mathbf{x}_n) + \epsilon_n$，其中 $\epsilon_n \sim \mathcal{N}(0, \sigma^2)$，$\sigma^2$ 为观测噪声方差.
 
-对于一个新的样本点 $\mathbf{x}^*$，我们希望预测 $f(\mathbf{x}^*)$ 的观测值 $y^*$。令向量 $\mathbf{y} = [y_1, y_2, \cdots, y_N]^\top$ 为已有的观测值，根据高斯过程的假设，$[\mathbf{y}; y^*]$ 满足
+对于一个新的样本点 $\mathbf{x}^*$，我们希望预测 $f(\mathbf{x}^*)$ 的观测值 $y^*$. 令向量 $\mathbf{y} = [y_1, y_2, \cdots, y_N]^\top$ 为已有的观测值，根据高斯过程的假设，$[\mathbf{y}; y^*]$ 满足
 $$
 \begin{bmatrix} \mathbf{y} \\ y^* \end{bmatrix} \sim \mathcal{N} \left( \begin{bmatrix} \boldsymbol{\mu}(\mathbf{X}) \\ \mu(\mathbf{x}^*) \end{bmatrix}, \begin{bmatrix} \mathbf{K}(\mathbf{X}, \mathbf{X}) + \sigma^2 \mathbf{I} & \mathbf{K}(\mathbf{X}, \mathbf{x}^*)^\top \\ \mathbf{K}(\mathbf{x}^*, \mathbf{X}) & k(\mathbf{x}^*, \mathbf{x}^*) \end{bmatrix} \right) \tag{46}
 $$
-其中 $\mathbf{K}(\mathbf{x}^*, \mathbf{X}) = [k(\mathbf{x}^*, \mathbf{x}_1), \cdots, k(\mathbf{x}^*, \mathbf{x}_N)]$。
+其中 $\mathbf{K}(\mathbf{x}^*, \mathbf{X}) = [k(\mathbf{x}^*, \mathbf{x}_1), \cdots, k(\mathbf{x}^*, \mathbf{x}_N)]$.
 
 根据上面的联合分布，$y^*$ 的后验分布为
 $$
@@ -397,14 +397,14 @@ $$
 \hat{\sigma}^2 = k(\mathbf{x}^*, \mathbf{x}^*) - \mathbf{K}(\mathbf{x}^*, \mathbf{X}) (\mathbf{K}(\mathbf{X}, \mathbf{X}) + \sigma^2 \mathbf{I})^{-1} \mathbf{K}(\mathbf{x}^*, \mathbf{X})^\top \tag{49}
 $$
 
-从公式 $(48)$ 可以看出，均值函数 $\boldsymbol{\mu}(\mathbf{x})$ 可以近似地互相抵消。在实际应用中，一般假设 $\boldsymbol{\mu}(\mathbf{x}) = \mathbf{0}$，均值 $\hat{\mu}$ 可以简化为
+从公式 $(48)$ 可以看出，均值函数 $\boldsymbol{\mu}(\mathbf{x})$ 可以近似地互相抵消. 在实际应用中，一般假设 $\boldsymbol{\mu}(\mathbf{x}) = \mathbf{0}$，均值 $\hat{\mu}$ 可以简化为
 $$
 \hat{\mu} = \mathbf{K}(\mathbf{x}^*, \mathbf{X}) (\mathbf{K}(\mathbf{X}, \mathbf{X}) + \sigma^2 \mathbf{I})^{-1} \mathbf{y} \tag{50}
 $$
-高斯过程回归常被用作贝叶斯优化中的代理模型，也广泛应用于回归、不确定性估计和少样本学习等任务中。
+高斯过程回归常被用作贝叶斯优化中的代理模型，也广泛应用于回归、不确定性估计和少样本学习等任务中.
 
 ![PixPin_2026-10-06_21-26-36](./Probability.assets/PixPin_2026-10-06_21-26-36.png)
 
-使用 RBF 核的高斯过程先验与后验。虚线表示从函数分布抽取的样本，黑线表示均值，红点表示观测，灰色带表示逐点均值 ±1 个标准差。观测附近的不确定性明显减小。
+使用 RBF 核的高斯过程先验与后验. 虚线表示从函数分布抽取的样本，黑线表示均值，红点表示观测，灰色带表示逐点均值 ±1 个标准差. 观测附近的不确定性明显减小. 
 
-灰色带不是 95% 区间，也不是整条函数同时落入的置信带。该图展示潜在函数的分布；若讨论未来含噪声观测 $y^*$，应区分函数后验方差与额外的观测噪声方差。公式$ (49)$ 给出的是潜在函数的后验方差，预测含噪声 $y^*$ 时还需加上 $\sigma^2$。
+灰色带不是 95% 区间，也不是整条函数同时落入的置信带. 该图展示潜在函数的分布；若讨论未来含噪声观测 $y^*$，应区分函数后验方差与额外的观测噪声方差. 公式$ (49)$ 给出的是潜在函数的后验方差，预测含噪声 $y^*$ 时还需加上 $\sigma^2$.

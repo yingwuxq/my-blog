@@ -77,4 +77,6 @@ export const tags = [
   { slug: "probability", name: "Probability" },
   { slug: "vision-language", name: "Vision Language" },
   { slug: "multimodal-model", name: "Multimodal Model" },
+  { slug: "opsd", name: "OPSD" },
+  { slug: "self-distillation", name: "Self-Distillation" },
 ];
